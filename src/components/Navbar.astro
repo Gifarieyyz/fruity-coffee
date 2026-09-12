@@ -1,27 +1,20 @@
----
-// src/components/Navbar.astro
----
-<!-- Navbar container (Default: bg-transparent) -->
+
 <nav id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 flex justify-between items-center rounded-full transition-colors duration-300 px-4 py-2 bg-transparent">
-  
-  <!-- Bagian Kiri: Logo Nanas & Nama -->
+
   <a href="/" class="flex items-center gap-4 hover:opacity-90 transition-opacity">
     <img src="/pineapple.webp" alt="Logo Nanas" class="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-sm" />
   </a>
 
-  <!-- Bagian Kanan: Menu Dropdown -->
-  <div class="relative group">
-    <!-- Default teks warna putih saat di atas -->
-    <button id="nav-btn" class="text-white font-['Space_Grotesk',sans-serif] font-bold tracking-widest uppercase text-sm flex items-center gap-2 px-5 py-3 rounded-full hover:bg-black/10 transition-colors drop-shadow-md">
-      Menu <span class="text-[0.6rem]">▼</span>
+
+  <div class="relative">
+    <button id="nav-btn" class="text-white font-['Space_Grotesk',sans-serif] font-bold tracking-widest uppercase text-sm flex items-center gap-2 px-5 py-3 rounded-full hover:bg-black/10 transition-colors drop-shadow-md cursor-pointer">
+      Menu <span id="nav-arrow" class="text-[0.6rem] transition-transform duration-200">▼</span>
     </button>
 
-    <!-- Isi Dropdown -->
-    <div class="absolute right-0 mt-4 w-48 bg-[#fff5ec] border-2 border-[#ecec53] rounded-xl shadow-[5px_5px_0px_#5c0617] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right overflow-hidden">
+
+    <div id="dropdown-menu" class="absolute right-0 mt-4 w-48 bg-[#fff5ec] border-2 border-[#ecec53] rounded-xl shadow-[5px_5px_0px_#5c0617] opacity-0 invisible transition-all duration-200 transform origin-top-right overflow-hidden pointer-events-none">
       <ul class="flex flex-col text-xs font-bold tracking-widest uppercase">
-        <li><a href="#" class="block px-6 py-4 text-[#5c0617] hover:bg-[#e05263] hover:text-[#fff5ec] border-b-2 border-[#ecec53] transition duration-200">HOME</a></li>
-        
-        <!-- href diubah mengarah ke ID section masing-masing -->
+        <li><a href="/" class="block px-6 py-4 text-[#5c0617] hover:bg-[#e05263] hover:text-[#fff5ec] border-b-2 border-[#ecec53] transition duration-200">HOME</a></li>
         <li><a href="#beans-section" class="block px-6 py-4 text-[#5c0617] hover:bg-[#e05263] hover:text-[#fff5ec] border-b-2 border-[#ecec53] transition duration-200">MY BEANS</a></li>
         <li><a href="#recipes-section" class="block px-6 py-4 text-[#5c0617] hover:bg-[#e05263] hover:text-[#fff5ec] transition duration-200">RECIPES</a></li>
       </ul>
@@ -31,49 +24,49 @@
 
 <script>
   const navbarContainer = document.getElementById('navbar-container');
-  const logoCircle = document.getElementById('logo-circle');
-  const navText = document.getElementById('nav-text');
   const navBtn = document.getElementById('nav-btn');
+  const dropdownMenu = document.getElementById('dropdown-menu');
 
+  // 1. Logika Klik Menu untuk Mobile & Desktop
+  if (navBtn && dropdownMenu) {
+    navBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownMenu.classList.contains('opacity-100');
+      
+      if (isOpen) {
+        // Tutup menu
+        dropdownMenu.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+        dropdownMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      } else {
+        // Buka menu
+        dropdownMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+        dropdownMenu.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+      }
+    });
+
+    // Tutup dropdown kalau klik di luar area menu
+    document.addEventListener('click', (e) => {
+      if (!navBtn.contains(e.target as Node) && !dropdownMenu.contains(e.target as Node)) {
+        dropdownMenu.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+        dropdownMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      }
+    });
+  }
+
+  // 2. Logika Scroll Navbar Background
   window.addEventListener('scroll', () => {
+    if (!navbarContainer || !navBtn) return;
+    
     if (window.scrollY > 50) {
-      // PAS DI SCROLL: Background muncul warna kuning, teks jadi hitam
       navbarContainer.classList.remove('bg-transparent');
       navbarContainer.classList.add('bg-[#FFEE8C]', 'backdrop-blur-sm');
-      
-      if (logoCircle) {
-        logoCircle.classList.add('border-black');
-        logoCircle.classList.remove('border-transparent');
-      }
-      
-      if (navText) {
-        navText.classList.remove('text-white');
-        navText.classList.add('text-black');
-      }
-      
-      if (navBtn) {
-        navBtn.classList.remove('text-white');
-        navBtn.classList.add('text-black');
-      }
+      navBtn.classList.remove('text-white');
+      navBtn.classList.add('text-black');
     } else {
-      // PAS DI ATAS: Balik transparan, teks balik putih
       navbarContainer.classList.remove('bg-[#FFEE8C]', 'backdrop-blur-sm');
       navbarContainer.classList.add('bg-transparent');
-      
-      if (logoCircle) {
-        logoCircle.classList.remove('border-black');
-        logoCircle.classList.add('border-transparent');
-      }
-      
-      if (navText) {
-        navText.classList.add('text-white');
-        navText.classList.remove('text-black');
-      }
-      
-      if (navBtn) {
-        navBtn.classList.add('text-white');
-        navBtn.classList.remove('text-black');
-      }
+      navBtn.classList.add('text-white');
+      navBtn.classList.remove('text-black');
     }
   });
 </script>
