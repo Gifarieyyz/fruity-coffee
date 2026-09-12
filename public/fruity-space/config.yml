@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Gifarieyyz/nama-repo-lu # Wajib diganti sesuai repo lu yang asli
+  repo: Gifarieyyz/fruity-coffee
   branch: main
 
 media_folder: "public/uploads"
