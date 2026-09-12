@@ -1,2 +1,0 @@
-/fruity-space/config.yml  /admin/config.yml        200
-/fruity-space/*           /fruity-space/index.html 200
