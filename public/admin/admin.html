@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruity Coffee Club — Admin Panel 🍍</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <!-- Custom Styling Injector untuk Decap CMS -->
+    <script>
+      CMS.registerPreviewStyle(`
+        body {
+          font-family: 'Space Grotesk', sans-serif !important;
+          background-color: #fff5ec !important;
+          color: #5c0617 !important;
+        }
+      `);
+    </script>
+
+    <!-- Style Kustom Dashboard Admin (Neobrutalism Vibe) -->
+    <style>
+      /* Background Utama CMS */
+      body, div[class*="AppHeader"], div[class*="CollectionTop"] {
+        background-color: #fff5ec !important;
+        font-family: 'Space Grotesk', sans-serif !important;
+      }
+
+      /* Header Navigasi CMS */
+      header[class*="AppHeader"] {
+        background-color: #5c0617 !important;
+        border-bottom: 4px solid #5c0617 !important;
+      }
+      header[class*="AppHeader"] a, header[class*="AppHeader"] button {
+        color: #ecec53 !important;
+        font-weight: 800 !important;
+      }
+
+      /* Card Konten & Container Form */
+      div[class*="SidebarContainer"], div[class*="ControlPaneContainer"], main[class*="AppMain"] {
+        background-color: #fff5ec !important;
+      }
+      
+      div[class*="FieldControl"] {
+        border: 3px solid #5c0617 !important;
+        border-radius: 1rem !important;
+        box-shadow: 4px 4px 0px #5c0617 !important;
+        background-[#fff5ec] !important;
+        overflow: hidden !important;
+      }
+
+      /* Label Input */
+      label[class*="FieldLabel"] {
+        color: #5c0617 !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+      }
+
+      /* Field Text & Select Input */
+      input[type="text"], textarea, select {
+        font-family: 'Space Grotesk', sans-serif !important;
+        font-weight: 700 !important;
+        color: #5c0617 !important;
+        background-color: #fff5ec !important;
+      }
+
+      /* Tombol Save & Publish (Neobrutalism Button) */
+      button[class*="Button"] {
+        font-family: 'Space Grotesk', sans-serif !important;
+        font-weight: 900 !important;
+        border: 3px solid #5c0617 !important;
+        border-radius: 0.75rem !important;
+        box-shadow: 4px 4px 0px #5c0617 !important;
+        transition: all 0.15s ease !important;
+        text-transform: uppercase !important;
+      }
+      
+      button[class*="PublishButton"], button[class*="Button-green"] {
+        background-color: #ecec53 !important;
+        color: #5c0617 !important;
+      }
+
+      button[class*="Button"]:hover {
+        transform: translateY(2px) !important;
+        box-shadow: 2px 2px 0px #5c0617 !important;
+      }
+    </style>
+
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+</html>

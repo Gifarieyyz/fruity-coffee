@@ -1,0 +1,859 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import { getCollection } from 'astro:content';
+
+const allBeans = await getCollection('beans');
+const allRecipes = await getCollection('recipes');
+---
+
+<BaseLayout title="Home">
+  <div id="loader-overlay" class="fixed inset-0 z-[9999] bg-[#5c0617] flex items-center justify-center transition-transform duration-800 ease-[cubic-bezier(0.87,0,0.13,1)] select-none">
+    <div id="pineapple-mascot" class="relative flex items-center justify-center transition-transform duration-500 scale-90 cursor-pointer">
+      <img src="/pineapple.png" alt="Pineapple Mascot" class="w-28 h-28 md:w-40 md:h-40 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] animate-bounce" />
+    </div>
+  </div>
+
+  <Navbar />
+  
+  <main 
+    class="min-h-screen w-full bg-cover bg-center bg-no-repeat relative flex items-center justify-center overflow-hidden custom-cursor"
+    style="background-image: url('/bg1.png');"
+  >
+    <div class="absolute inset-0 bg-black/30 z-0 pointer-events-none"></div>
+
+    <div class="absolute top-28 left-8 md:left-16 z-20 animate-float pointer-events-auto">
+      <div class="sticker-pop bg-[#ecec53] text-[#5c0617] border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl -rotate-12 shadow-[4px_4px_0px_#5c0617] cursor-pointer text-sm md:text-base select-none">
+        100% JUICY! 🍍
+      </div>
+    </div>
+
+    <div class="absolute bottom-32 right-8 md:right-20 z-20 animate-float-delayed pointer-events-auto">
+      <div class="sticker-pop bg-[#e05263] text-white border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl rotate-12 shadow-[4px_4px_0px_#5c0617] cursor-pointer text-sm md:text-base select-none">
+        SWEET & ACIDIC 🍋
+      </div>
+    </div>
+
+    <h1 id="hi-there-text" class="relative z-10 text-white text-7xl md:text-[8rem] font-bold drop-shadow-2xl lowercase select-none transition-all duration-75 scale-90 opacity-0">
+      hi there.
+    </h1>
+
+    <a href="#beans-section" class="sfx-trigger absolute bottom-12 left-1/2 -translate-x-1/2 z-20 text-white opacity-80 hover:opacity-100 hover:text-[#ecec53] hover:scale-125 transition-all duration-300 animate-bounce cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-10 h-10 md:w-12 md:h-12 drop-shadow-md">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+      </svg>
+    </a>
+  </main>
+
+  <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#ecec53] py-3 flex items-center select-none w-full">
+    <div class="marquee-track flex whitespace-nowrap">
+      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
+        <span>FRUITY COFFEE CLUB 🍍</span>
+        <span>MANUAL BREW DAILY 🍓</span>
+        <span>SWEET & JUICY 🍇</span>
+        <span>BRIGHT ACIDITY 🍋</span>
+        <span>NO ROASTY BITS 🍒</span>
+      </div>
+      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
+        <span>FRUITY COFFEE CLUB 🍍</span>
+        <span>MANUAL BREW DAILY 🍓</span>
+        <span>SWEET & JUICY 🍇</span>
+        <span>BRIGHT ACIDITY 🍋</span>
+        <span>NO ROASTY BITS 🍒</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="beans-section" class="min-h-screen border-t-4 border-[#5c0617] py-20 flex flex-col justify-center polkadot-bg relative overflow-hidden custom-cursor">
+    <div class="absolute top-10 right-10 z-20 animate-float hidden md:block">
+      <div class="sticker-pop bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl rotate-6 shadow-[4px_4px_0px_#5c0617] cursor-pointer select-none">
+        HOT BREW ☕
+      </div>
+    </div>
+
+    <div class="anim-on-scroll px-6 md:px-20 mb-4">
+      <h2 class="font-['DM_Serif_Display',serif] text-5xl md:text-7xl text-[#5c0617] mb-4 hover:translate-x-2 transition-transform duration-300 cursor-default">
+        Recent Brews
+      </h2>
+      <p class="font-['Space_Grotesk',sans-serif] text-lg font-bold text-[#e05263] uppercase tracking-widest">
+        Geser & klik untuk detail beans ➔
+      </p>
+    </div>
+
+    <div 
+      id="beans-carousel" 
+      class="anim-on-scroll flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-12 px-[15vw] md:px-[40vw] py-12 hide-scrollbar w-full items-center cursor-grab active:cursor-grabbing scroll-smooth"
+    >
+      {allBeans.map((bean, i) => (
+        <div 
+          class={`bean-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
+          data-name={bean.data.name}
+          data-origin={bean.data.origin}
+          data-process={bean.data.process}
+          data-roaster={bean.data.roaster}
+          data-notes={bean.data.notes}
+          data-review={bean.body}
+        >
+          <div>
+            <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110">
+              {bean.data.roaster}
+            </div>
+            <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl leading-tight mb-4 text-[#5c0617]">
+              {bean.data.name}
+            </h3>
+          </div>
+          <div class="mt-8 border-t-2 border-[#5c0617]/20 pt-4">
+            <span class="font-['Space_Grotesk',sans-serif] font-bold text-xs uppercase tracking-widest text-[#5c0617] block mb-1">Notes:</span>
+            <p class="font-bold text-[#e05263] text-sm md:text-base">{bean.data.notes}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="anim-on-scroll flex justify-center gap-6 mt-4 z-20">
+      <button id="beans-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+        &#129120;
+      </button>
+      <button id="beans-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+        &#129122;
+      </button>
+    </div>
+  </section>
+
+  <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#fff5ec] py-3 flex items-center select-none w-full">
+    <div class="marquee-track-reverse flex whitespace-nowrap">
+      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
+        <span>POUR OVER ENTHUSIAST ☕</span>
+        <span>HARIO SWITCH 🍎</span>
+        <span>TIMEMORE S3 🍊</span>
+        <span>FRUITY COFFEE CLUB 🍍</span>
+        <span>LIGHT ROAST ONLY 🍑</span>
+      </div>
+      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
+        <span>POUR OVER ENTHUSIAST ☕</span>
+        <span>HARIO SWITCH 🍎</span>
+        <span>TIMEMORE S3 🍊</span>
+        <span>FRUITY COFFEE CLUB 🍍</span>
+        <span>LIGHT ROAST ONLY 🍑</span>
+      </div>
+    </div>
+  </div>
+
+  <section 
+    id="gear-section" 
+    class="min-h-screen md:min-h-[115vh] bg-[#fff5ec] border-t-4 border-[#5c0617] py-12 md:py-20 px-4 md:px-12 relative overflow-hidden flex flex-col justify-between custom-cursor bg-cover bg-bottom bg-no-repeat"
+    style="background-image: url('/bg2.jpg');"
+  >
+    <div class="anim-on-scroll w-full max-w-[1500px] h-[680px] mx-auto relative hidden md:block my-auto">
+      
+      <div class="gear-item group sfx-trigger absolute left-[2%] top-[4%] w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 -rotate-12">
+          <img src="/timemore.png" alt="Timemore S3" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <span class="absolute top-[8%] right-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
+            1
+          </span>
+        </div>
+        <div class="absolute -bottom-10 left-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
+          <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
+            Timemore Chestnut S3 (Manual Grinder)
+          </span>
+        </div>
+      </div>
+
+      <div class="gear-item group sfx-trigger absolute left-[34%] top-[12%] w-[260px] lg:w-[310px] cursor-pointer z-10 animate-float-delayed">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 rotate-6">
+          <img src="/mugen.png" alt="Hario Switch & Mugen" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <span class="absolute top-[5%] right-[15px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
+            2
+          </span>
+        </div>
+        <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
+          <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
+            Hario Switch + Mugen Dripper
+          </span>
+        </div>
+      </div>
+
+      <div class="gear-item group sfx-trigger absolute right-[2%] top-[3%] w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 rotate-12">
+          <img src="/paper.png" alt="Cafec Abaca Paper" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <span class="absolute top-[10px] right-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
+            3
+          </span>
+        </div>
+        <div class="absolute -bottom-10 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
+          <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
+            Cafec Abaca & T-90 Paper Filters
+          </span>
+        </div>
+      </div>
+
+      <div class="gear-item group sfx-trigger absolute right-[10%] top-[36%] w-[250px] lg:w-[290px] cursor-pointer z-10 animate-float-delayed">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 -rotate-15">
+          <img src="/mineral.png" alt="Water Minerals" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <span class="absolute top-[10px] left-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
+            4
+          </span>
+        </div>
+        <div class="absolute -bottom-10 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
+          <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
+            Kromatik Tint Water Minerals Mix
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 md:hidden py-4 z-10 my-auto">
+      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
+        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">1. Grinder</span>
+        <span class="font-bold text-sm text-[#5c0617]">Timemore S3</span>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
+        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">2. Dripper</span>
+        <span class="font-bold text-sm text-[#5c0617]">Hario Switch</span>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
+        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">3. Paper</span>
+        <span class="font-bold text-sm text-[#5c0617]">Cafec Abaca</span>
+      </div>
+      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
+        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">4. Water</span>
+        <span class="font-bold text-sm text-[#5c0617]">DIY Minerals</span>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#ecec53] py-3 flex items-center select-none w-full">
+    <div class="marquee-track flex whitespace-nowrap">
+      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
+        <span>POUR OVER ENTHUSIAST ☕</span>
+        <span>HARIO SWITCH 🍎</span>
+        <span>TIMEMORE S3 🍊</span>
+        <span>FRUITY COFFEE CLUB 🍍</span>
+        <span>LIGHT ROAST ONLY 🍑</span>
+      </div>
+      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
+        <span>POUR OVER ENTHUSIAST ☕</span>
+        <span>HARIO SWITCH 🍎</span>
+        <span>TIMEMORE S3 🍊</span>
+        <span>FRUITY COFFEE CLUB 🍍</span>
+        <span>LIGHT ROAST ONLY 🍑</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="recipes-section" class="min-h-screen border-t-4 border-[#5c0617] py-20 flex flex-col justify-center polkadot-bg relative overflow-hidden custom-cursor">
+    
+    <div class="absolute bottom-16 left-12 z-20 animate-float-delayed hidden md:block">
+      <div class="sticker-pop bg-[#e05263] text-white border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl -rotate-6 shadow-[4px_4px_0px_#5c0617] cursor-pointer select-none">
+        93°C WATER 💧
+      </div>
+    </div>
+
+    <div class="anim-on-scroll px-6 md:px-20 mb-4">
+      <h2 class="font-['DM_Serif_Display',serif] text-5xl md:text-7xl text-[#5c0617] mb-4 hover:translate-x-2 transition-transform duration-300 cursor-default">
+        Brewing Recipes
+      </h2>
+      <p class="font-['Space_Grotesk',sans-serif] text-lg font-bold text-[#e05263] uppercase tracking-widest">
+        Geser & klik untuk lihat parameter ➔
+      </p>
+    </div>
+
+    <div 
+      id="recipes-carousel" 
+      class="anim-on-scroll flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-12 px-[15vw] md:px-[40vw] py-12 hide-scrollbar w-full items-center cursor-grab active:cursor-grabbing scroll-smooth z-10"
+    >
+      {allRecipes.map((recipe, i) => (
+        <div 
+          class={`recipe-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
+          data-title={recipe.data.title}
+          data-dripper={recipe.data.dripper}
+          data-ratio={recipe.data.ratio}
+          data-watertemp={recipe.data.waterTemp}
+          data-grindsize={recipe.data.grindSize}
+          data-instructions={recipe.body}
+        >
+          <div>
+            <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110">
+              {recipe.data.dripper}
+            </div>
+            
+            <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl leading-tight mb-4 text-[#5c0617]">
+              {recipe.data.title}
+            </h3>
+          </div>
+
+          <div class="mt-8 border-t-2 border-[#5c0617]/20 pt-4 flex items-center justify-between group">
+            <span class="font-bold text-xs uppercase tracking-widest text-[#e05263] group-hover:translate-x-1 transition-transform">Buka Resep</span>
+            <span class="text-xl group-hover:translate-x-2 transition-transform">➔</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="anim-on-scroll flex justify-center gap-6 mt-4 z-20">
+      <button id="recipes-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+        &#129120;
+      </button>
+      <button id="recipes-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+        &#129122;
+      </button>
+    </div>
+
+  </section>
+
+  <footer 
+    id="footer-section" 
+    class="min-h-[60vh] border-t-4 border-[#5c0617] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center bg-cover bg-bottom bg-no-repeat overflow-hidden custom-cursor"
+    style="background-image: url('/walking.gif');" 
+  >
+   
+  </footer>
+
+  <div id="bean-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer opacity-0 transition-opacity duration-300"></div>
+    
+    <div id="modal-content" class="relative bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
+      
+      <button id="close-modal" class="sfx-trigger absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
+        X
+      </button>
+
+      <h2 id="modal-name" class="font-['DM_Serif_Display',serif] text-4xl md:text-5xl mb-8 text-[#5c0617] pr-12 leading-tight"></h2>
+      
+      <div class="mb-8 pb-8 border-b-2 border-[#5c0617]/20">
+        <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-4">Beans Info</h3>
+        <ul class="space-y-2 font-['Space_Grotesk',sans-serif] text-lg text-[#5c0617]">
+          <li><strong>• Origin:</strong> <span id="modal-origin"></span></li>
+          <li><strong>• Process:</strong> <span id="modal-process"></span></li>
+          <li><strong>• Roaster:</strong> <span id="modal-roaster"></span></li>
+          <li><strong>• Notes:</strong> <span id="modal-notes" class="text-[#e05263] font-bold"></span></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-2">My Thoughts</h3>
+        <div id="modal-review" class="font-['Space_Grotesk',sans-serif] text-[#5c0617] mt-3 leading-relaxed text-lg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="recipe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div id="recipe-modal-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer opacity-0 transition-opacity duration-300"></div>
+    
+    <div id="recipe-modal-content" class="relative bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
+      
+      <button id="recipe-close-modal" class="sfx-trigger absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
+        X
+      </button>
+
+      <div id="recipe-modal-dripper" class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617]"></div>
+      <h2 id="recipe-modal-title" class="font-['DM_Serif_Display',serif] text-4xl md:text-5xl mb-8 text-[#5c0617] pr-12 leading-tight"></h2>
+      
+      <div class="mb-8 pb-8 border-b-2 border-[#5c0617]/20">
+        <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-4">Brew Parameters</h3>
+        <ul class="space-y-2 font-['Space_Grotesk',sans-serif] text-lg text-[#5c0617]">
+          <li><strong>• Ratio:</strong> <span id="recipe-modal-ratio"></span></li>
+          <li><strong>• Water Temp:</strong> <span id="recipe-modal-watertemp"></span></li>
+          <li><strong>• Grind Size:</strong> <span id="recipe-modal-grindsize" class="text-[#e05263] font-bold"></span></li>
+        </ul>
+      </div>
+
+      <div class="mb-8 p-5 bg-[#ecec53] border-4 border-[#5c0617] rounded-2xl shadow-[6px_6px_0px_#5c0617]">
+        <h4 class="font-['Space_Grotesk',sans-serif] font-black text-base text-[#5c0617] uppercase tracking-wider mb-3 flex items-center gap-2">
+          ⚙️ Interactive Recipe & Dose Calculator
+        </h4>
+        <div class="flex flex-col gap-3 font-['Space_Grotesk',sans-serif] text-xs md:text-sm text-[#5c0617]">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="flex items-center justify-between gap-2">
+              <label for="target-water-input" class="font-bold">Total Air (ml):</label>
+              <input id="target-water-input" type="number" value="250" step="10" min="100" max="1000" class="w-24 px-2 py-1 font-bold text-center border-2 border-[#5c0617] rounded-lg bg-[#fff5ec]" />
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <label for="brew-ratio-select" class="font-bold">Brew Ratio:</label>
+              <select id="brew-ratio-select" class="w-24 px-2 py-1 font-bold text-center border-2 border-[#5c0617] rounded-lg bg-[#fff5ec]">
+                <option value="15">1 : 15</option>
+                <option value="15.5" selected>1 : 15.5</option>
+                <option value="16">1 : 16</option>
+                <option value="16.5">1 : 16.5</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between gap-2 pt-1">
+            <label for="bean-process-select" class="font-bold">Proses Beans:</label>
+            <select id="bean-process-select" class="w-48 px-2 py-1 font-bold text-center border-2 border-[#5c0617] rounded-lg bg-[#fff5ec]">
+              <option value="washed">Washed / Wet</option>
+              <option value="anaerobic" selected>Anaerobic / Thermal</option>
+              <option value="giling-basah">Giling Basah (P88)</option>
+              <option value="natural">Geisha / Natural</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center pt-3 border-t-2 border-[#5c0617]/30">
+            <div class="bg-[#fff5ec] p-2 rounded-xl border-2 border-[#5c0617]">
+              <span class="block text-[10px] uppercase font-bold text-[#e05263]">Dosis Kopi</span>
+              <span id="coffee-dose-res" class="font-black text-sm md:text-base">16.1 g</span>
+            </div>
+            <div class="bg-[#fff5ec] p-2 rounded-xl border-2 border-[#5c0617]">
+              <span class="block text-[10px] uppercase font-bold text-[#5c0617]">Suhu Air</span>
+              <span id="ideal-temp-res" class="font-black text-sm md:text-base">92°C</span>
+            </div>
+            <div class="bg-[#fff5ec] p-2 rounded-xl border-2 border-[#5c0617]">
+              <span class="block text-[10px] uppercase font-bold text-[#5c0617]">Brew Time</span>
+              <span id="brew-time-res" class="font-black text-sm md:text-base">02:30</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-2">Instructions</h3>
+        <div id="recipe-modal-instructions" class="font-['Space_Grotesk',sans-serif] text-[#5c0617] mt-3 leading-relaxed text-lg bg-[#f8e5d6] p-6 rounded-2xl border-2 border-[#5c0617]"></div>
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
+
+  // WEB AUDIO API SYNTHESIZER
+  const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+  function playPopSound() {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.08);
+    
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+    
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.08);
+  }
+
+  document.querySelectorAll('.sfx-trigger, .sticker-pop').forEach(el => {
+    el.addEventListener('click', playPopSound);
+  });
+
+  // EASTER EGG CONFETTI
+  let clickCount = 0;
+  function triggerConfetti(e: MouseEvent) {
+    clickCount++;
+    playPopSound();
+    if (clickCount >= 5) {
+      if ((window as any).confetti) {
+        (window as any).confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+      clickCount = 0;
+    }
+  }
+
+  const pineappleMascot = document.getElementById('pineapple-mascot');
+  if (pineappleMascot) pineappleMascot.addEventListener('click', triggerConfetti);
+  document.querySelectorAll('.sticker-pop').forEach(stk => stk.addEventListener('click', triggerConfetti));
+
+  // INTERACTIVE BREW RECIPE & PARAMETER CALCULATOR LOGIC
+  const waterInput = document.getElementById('target-water-input') as HTMLInputElement;
+  const ratioSelect = document.getElementById('brew-ratio-select') as HTMLSelectElement;
+  const processSelect = document.getElementById('bean-process-select') as HTMLSelectElement;
+
+  const doseRes = document.getElementById('coffee-dose-res');
+  const tempRes = document.getElementById('ideal-temp-res');
+  const timeRes = document.getElementById('brew-time-res');
+
+  function updateRecipeCalculator() {
+    if (!waterInput || !ratioSelect || !processSelect) return;
+    
+    const water = parseFloat(waterInput.value) || 0;
+    const ratio = parseFloat(ratioSelect.value) || 15.5;
+    const process = processSelect.value;
+
+    const dose = water / ratio;
+    if (doseRes) doseRes.innerText = `${dose.toFixed(1)} g`;
+
+    let temp = '92°C';
+    let time = '02:30';
+
+    if (process === 'washed') {
+      temp = '94°C';
+      time = '02:15';
+    } else if (process === 'anaerobic') {
+      temp = '91°C';
+      time = '02:45';
+    } else if (process === 'giling-basah') {
+      temp = '93°C';
+      time = '02:20';
+    } else if (process === 'natural') {
+      temp = '90°C';
+      time = '02:30';
+    }
+
+    if (tempRes) tempRes.innerText = temp;
+    if (timeRes) timeRes.innerText = time;
+  }
+
+  if (waterInput && ratioSelect && processSelect) {
+    waterInput.addEventListener('input', updateRecipeCalculator);
+    ratioSelect.addEventListener('change', updateRecipeCalculator);
+    processSelect.addEventListener('change', updateRecipeCalculator);
+  }
+
+  // ANIMASI PRELOADER
+  const loaderOverlay = document.getElementById('loader-overlay');
+  const hiText = document.getElementById('hi-there-text');
+
+  if (loaderOverlay && pineappleMascot) {
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      pineappleMascot.classList.remove('scale-90');
+      pineappleMascot.classList.add('scale-125');
+    }, 400);
+
+    setTimeout(() => {
+      loaderOverlay.style.transform = 'translateY(-100%)';
+      document.body.style.overflow = '';
+      
+      if (hiText) {
+        hiText.classList.remove('scale-90', 'opacity-0');
+        hiText.classList.add('scale-100', 'opacity-100');
+      }
+    }, 900);
+  }
+
+  // REUSABLE SWIPE FOCUS CAROUSEL LOGIC
+  function setupCarouselFocus(carouselId: string, cardClass: string, prevBtnId?: string, nextBtnId?: string) {
+    const carousel = document.getElementById(carouselId);
+    const cards = carousel?.querySelectorAll(cardClass);
+    const prevBtn = prevBtnId ? document.getElementById(prevBtnId) : null;
+    const nextBtn = nextBtnId ? document.getElementById(nextBtnId) : null;
+
+    if (!carousel || !cards || cards.length === 0) return;
+
+    function updateFocus() {
+      const carouselRect = carousel.getBoundingClientRect();
+      const carouselCenter = carouselRect.left + carouselRect.width / 2;
+
+      cards.forEach((card) => {
+        const el = card as HTMLElement;
+        const cardRect = el.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const distanceFromCenter = Math.abs(carouselCenter - cardCenter);
+
+        if (distanceFromCenter < 180) {
+          el.style.transform = 'scale(1.08) translateY(-16px)';
+          el.style.opacity = '1';
+          el.style.filter = 'blur(0px)';
+          el.style.boxShadow = '12px 12px 0px #e05263';
+          el.style.zIndex = '20';
+        } else {
+          el.style.transform = 'scale(0.88) translateY(0px)';
+          el.style.opacity = '0.55';
+          el.style.filter = 'blur(2.5px)';
+          el.style.boxShadow = '8px 8px 0px #5c0617';
+          el.style.zIndex = '10';
+        }
+      });
+    }
+
+    carousel.addEventListener('scroll', updateFocus);
+
+    const scrollAmount = 320;
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+    carousel.addEventListener('mouseleave', () => { isDown = false; });
+    carousel.addEventListener('mouseup', () => { isDown = false; });
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    setTimeout(updateFocus, 200);
+    window.addEventListener('resize', updateFocus);
+  }
+
+  setupCarouselFocus('beans-carousel', '.bean-card', 'beans-prev', 'beans-next');
+  setupCarouselFocus('recipes-carousel', '.recipe-card', 'recipes-prev', 'recipes-next');
+
+  // Animasi Font Hero
+  const textElement = document.getElementById('hi-there-text');
+  const fonts = [
+    "'Space Grotesk', sans-serif", "'DM Serif Display', serif", "'Syne', sans-serif",
+    "'Bebas Neue', sans-serif", "'Space Mono', monospace", "'Abril Fatface', serif", "'Permanent Marker', cursive"
+  ];
+  let currentIndex = 0;
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % fonts.length;
+    if (textElement) textElement.style.fontFamily = fonts[currentIndex];
+  }, 400);
+
+  // Intersection Observer
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, observerOptions);
+  document.querySelectorAll('.anim-on-scroll').forEach(el => observer.observe(el));
+
+  // Modal Beans
+  const beanCardsList = document.querySelectorAll('.bean-card');
+  const modal = document.getElementById('bean-modal');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalContent = document.getElementById('modal-content');
+  const closeModal = document.getElementById('close-modal');
+
+  const mName = document.getElementById('modal-name');
+  const mOrigin = document.getElementById('modal-origin');
+  const mProcess = document.getElementById('modal-process');
+  const mRoaster = document.getElementById('modal-roaster');
+  const mNotes = document.getElementById('modal-notes');
+  const mReview = document.getElementById('modal-review');
+
+  function openModal(data: any) {
+    if(mName) mName.innerText = data.name;
+    if(mOrigin) mOrigin.innerText = data.origin;
+    if(mProcess) mProcess.innerText = data.process;
+    if(mRoaster) mRoaster.innerText = data.roaster;
+    if(mNotes) mNotes.innerText = data.notes;
+    if(mReview) mReview.innerHTML = marked.parse(data.review);
+
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+      modalBackdrop?.classList.remove('opacity-0');
+      modalBackdrop?.classList.add('opacity-100');
+      modalContent?.classList.remove('scale-95', 'opacity-0');
+      modalContent?.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  }
+
+  function close() {
+    modalBackdrop?.classList.remove('opacity-100');
+    modalBackdrop?.classList.add('opacity-0');
+    modalContent?.classList.remove('scale-100', 'opacity-100');
+    modalContent?.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => {
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  beanCardsList.forEach(card => card.addEventListener('click', () => openModal((card as HTMLElement).dataset)));
+  if(closeModal) closeModal.addEventListener('click', close);
+  if(modalBackdrop) modalBackdrop.addEventListener('click', close);
+
+  // Modal Recipes
+  const recipeCards = document.querySelectorAll('.recipe-card');
+  const recipeModal = document.getElementById('recipe-modal');
+  const recipeModalBackdrop = document.getElementById('recipe-modal-backdrop');
+  const recipeModalContent = document.getElementById('recipe-modal-content');
+  const recipeCloseModal = document.getElementById('recipe-close-modal');
+
+  const rTitle = document.getElementById('recipe-modal-title');
+  const rDripper = document.getElementById('recipe-modal-dripper');
+  const rRatio = document.getElementById('recipe-modal-ratio');
+  const rWaterTemp = document.getElementById('recipe-modal-watertemp');
+  const rGrindSize = document.getElementById('recipe-modal-grindsize');
+  const rInstructions = document.getElementById('recipe-modal-instructions');
+
+  function openRecipeModal(data: any) {
+    if(rTitle) rTitle.innerText = data.title;
+    if(rDripper) rDripper.innerText = data.dripper;
+    if(rRatio) rRatio.innerText = data.ratio;
+    if(rWaterTemp) rWaterTemp.innerText = data.watertemp;
+    if(rGrindSize) rGrindSize.innerText = data.grindsize;
+    if(rInstructions) rInstructions.innerHTML = marked.parse(data.instructions);
+
+    updateRecipeCalculator();
+
+    recipeModal?.classList.remove('hidden');
+    recipeModal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+      recipeModalBackdrop?.classList.remove('opacity-0');
+      recipeModalBackdrop?.classList.add('opacity-100');
+      recipeModalContent?.classList.remove('scale-95', 'opacity-0');
+      recipeModalContent?.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  }
+
+  function closeRecipe() {
+    recipeModalBackdrop?.classList.remove('opacity-100');
+    recipeModalBackdrop?.classList.add('opacity-0');
+    recipeModalContent?.classList.remove('scale-100', 'opacity-100');
+    recipeModalContent?.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => {
+      recipeModal?.classList.add('hidden');
+      recipeModal?.classList.remove('flex');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  recipeCards.forEach(card => card.addEventListener('click', () => openRecipeModal((card as HTMLElement).dataset)));
+  if(recipeCloseModal) recipeCloseModal.addEventListener('click', closeRecipe);
+  if(recipeModalBackdrop) recipeModalBackdrop.addEventListener('click', closeRecipe);
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* CUSTOM PLAYFUL NANAS CURSOR */
+  .custom-cursor {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='20' font-size='20'>🍍</text></svg>"), auto;
+  }
+
+  /* STICKER HOVER POP ANIMATION */
+  .sticker-pop {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .sticker-pop:hover {
+    transform: scale(1.25) rotate(0deg) !important;
+  }
+
+  /* Polkadot Background Pattern */
+  .polkadot-bg {
+    background-color: #f8e5d6;
+    background-image: radial-gradient(rgba(92, 6, 23, 0.25) 5%, transparent 0.5%);
+    background-size: 24px 24px;
+    background-position: 0 0;
+  }
+
+  /* Animasi Fade-in Scroll Smooth & Bouncy */
+  .anim-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+  }
+  .anim-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animasi Hero Text Reveal */
+  #hi-there-text {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ANIMASI RUNNING TEXT SEAMLESS */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeLoop 22s linear infinite;
+  }
+  .marquee-track-reverse {
+    display: flex;
+    width: max-content;
+    animation: marqueeLoopReverse 22s linear infinite;
+  }
+
+  @keyframes marqueeLoop {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marqueeLoopReverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+
+  /* Animasi Floating Melayang */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes floatDelayed {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: floatDelayed 4.5s ease-in-out infinite 1.5s;
+  }
+
+  /* Playful Button Active Scale */
+  .btn-playful:active {
+    transform: scale(0.9) translateY(2px);
+  }
+
+  /* Styling Markdown Render */
+  #recipe-modal-instructions p, #modal-review p { margin-bottom: 1rem; }
+  #recipe-modal-instructions h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: #5c0617;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  #recipe-modal-instructions ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  #recipe-modal-instructions ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  #recipe-modal-instructions strong, #modal-review strong {
+    color: #e05263;
+    font-weight: 800;
+  }
+
+  .gear-item {
+    will-change: transform;
+  }
+</style>

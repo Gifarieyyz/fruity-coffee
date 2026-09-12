@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "beans"
+    label: "Beans Log ☕"
+    folder: "src/content/beans"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Bean Name", name: "name", widget: "string" }
+      - { label: "Origin", name: "origin", widget: "string" }
+      - { label: "Process", name: "process", widget: "string" }
+      - { label: "Roaster", name: "roaster", widget: "string" }
+      - { label: "Flavor Notes", name: "notes", widget: "string" }
+      - { label: "Review / Tasting Notes", name: "body", widget: "markdown" }
+
+  - name: "recipes"
+    label: "Brewing Recipes 📖"
+    folder: "src/content/recipes"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Recipe Title", name: "title", widget: "string" }
+      - { label: "Dripper", name: "dripper", widget: "string" }
+      - { label: "Ratio", name: "ratio", widget: "string" }
+      - { label: "Water Temp", name: "waterTemp", widget: "string" }
+      - { label: "Grind Size", name: "grindSize", widget: "string" }
+      - { label: "Step-by-Step Instructions", name: "body", widget: "markdown" }
