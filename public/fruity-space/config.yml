@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Gifarieyyz/nama-repo-lu # Wajib diganti sesuai repo lu yang asli
   branch: main
 
 media_folder: "public/uploads"
