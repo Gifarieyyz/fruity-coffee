@@ -73,7 +73,7 @@ const allRecipes = await getCollection('recipes');
     </div>
 
     <div class="anim-on-scroll px-6 md:px-20 mb-8 pt-4 flex flex-col items-start">
-      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_#5c0617] animate-float cursor-default -rotate-2">
+      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_2px_#5c0617] animate-float cursor-default -rotate-2">
         <h2 class="font-['Fredoka_One',sans-serif] font-normal text-4xl md:text-6xl text-white m-0 leading-none uppercase tracking-wider">
           Recent Brews
         </h2>
@@ -86,7 +86,7 @@ const allRecipes = await getCollection('recipes');
     >
       {allBeans.map((bean, i) => (
         <div 
-          class={`bean-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_#5c0617] ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
+          class={`bean-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_2px_#5c0617] ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
           data-name={bean.data.name}
           data-origin={bean.data.origin}
           data-process={bean.data.process}
@@ -238,7 +238,7 @@ const allRecipes = await getCollection('recipes');
     </div>
 
     <div class="anim-on-scroll px-6 md:px-20 mb-8 pt-4 flex flex-col items-start">
-      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_#5c0617] animate-float-delayed cursor-default rotate-2">
+      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_2px_#5c0617] animate-float-delayed cursor-default rotate-2">
         <h2 class="font-['Fredoka_One',sans-serif] font-normal text-4xl md:text-6xl text-white m-0 leading-none uppercase tracking-wider">
           Brewing Recipes
         </h2>
@@ -251,7 +251,7 @@ const allRecipes = await getCollection('recipes');
     >
       {allRecipes.map((recipe, i) => (
         <div 
-          class={`recipe-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_#5c0617] ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
+          class={`recipe-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_2px_#5c0617] ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
           data-title={recipe.data.title}
           data-dripper={recipe.data.dripper}
           data-ratio={recipe.data.ratio}
@@ -312,7 +312,7 @@ const allRecipes = await getCollection('recipes');
   <div id="bean-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
     <div id="modal-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer opacity-0 transition-opacity duration-300"></div>
     
-    <div id="modal-content" class="relative bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
+    <div id="modal-content" class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_2px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
       
       <button id="close-modal" class="sfx-trigger absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
         X
@@ -340,7 +340,7 @@ const allRecipes = await getCollection('recipes');
   <div id="recipe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
     <div id="recipe-modal-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer opacity-0 transition-opacity duration-300"></div>
     
-    <div id="recipe-modal-content" class="relative bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
+    <div id="recipe-modal-content" class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_2px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
       
       <button id="recipe-close-modal" class="sfx-trigger absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
         X
@@ -558,13 +558,13 @@ const allRecipes = await getCollection('recipes');
           el.style.transform = 'scale(1.08) translateY(-16px)';
           el.style.opacity = '1';
           el.style.filter = 'blur(0px)';
-          el.style.boxShadow = '12px 12px 0px #e05263';
+          el.style.boxShadow = '12px 12px 0px 2px #e05263';
           el.style.zIndex = '20';
         } else {
           el.style.transform = 'scale(0.88) translateY(0px)';
           el.style.opacity = '0.55';
           el.style.filter = 'blur(2.5px)';
-          el.style.boxShadow = '8px 8px 0px #5c0617';
+          el.style.boxShadow = '8px 8px 0px 2px #5c0617';
           el.style.zIndex = '10';
         }
       });

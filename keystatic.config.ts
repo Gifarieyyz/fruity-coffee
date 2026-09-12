@@ -18,7 +18,10 @@ export default config({
         process: fields.text({ label: 'Process' }),
         roaster: fields.text({ label: 'Roaster' }),
         notes: fields.text({ label: 'Flavor Notes' }),
-        content: fields.document({ label: 'Review & Thoughts', richtext: true }),
+        content: fields.markdoc({
+          label: 'Review & Thoughts',
+          extension: 'md',
+        }),
       },
     }),
     recipes: collection({
@@ -33,7 +36,10 @@ export default config({
         ratio: fields.text({ label: 'Ratio' }),
         waterTemp: fields.text({ label: 'Water Temp' }),
         grindSize: fields.text({ label: 'Grind Size' }),
-        content: fields.document({ label: 'Instructions', richtext: true }),
+        content: fields.markdoc({
+          label: 'Instructions',
+          extension: 'md',
+        }),
       },
     }),
   },
