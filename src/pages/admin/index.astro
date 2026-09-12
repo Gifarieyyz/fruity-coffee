@@ -6,27 +6,74 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruity Coffee Club — Admin Panel 🍍</title>
-    <!-- Script Identity Mandatory -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- 1. Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- 2. Styling Kustom Admin Panel (Neobrutalism Vibe) -->
+    <style is:global>
+      body, div[class*="AppHeader"], div[class*="CollectionTop"] {
+        background-color: #fff5ec !important;
+        font-family: 'Space Grotesk', sans-serif !important;
+      }
+      header[class*="AppHeader"] {
+        background-color: #5c0617 !important;
+        border-bottom: 4px solid #5c0617 !important;
+      }
+      header[class*="AppHeader"] a, header[class*="AppHeader"] button {
+        color: #ecec53 !important;
+        font-weight: 800 !important;
+      }
+      div[class*="FieldControl"] {
+        border: 3px solid #5c0617 !important;
+        border-radius: 1rem !important;
+        box-shadow: 4px 4px 0px #5c0617 !important;
+        background-color: #fff5ec !important;
+        overflow: hidden !important;
+      }
+      label[class*="FieldLabel"] {
+        color: #5c0617 !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+      }
+      button[class*="Button"] {
+        font-family: 'Space Grotesk', sans-serif !important;
+        font-weight: 900 !important;
+        border: 3px solid #5c0617 !important;
+        border-radius: 0.75rem !important;
+        box-shadow: 4px 4px 0px #5c0617 !important;
+        text-transform: uppercase !important;
+      }
+      button[class*="PublishButton"], button[class*="Button-green"] {
+        background-color: #ecec53 !important;
+        color: #5c0617 !important;
+      }
+    </style>
   </head>
   <body>
-    <!-- Decap CMS Script -->
+    <!-- Tombol manual Netlify Identity di pojok atas (Backup jika modal tertutup) -->
+    <div style="position: fixed; top: 12px; right: 12px; z-index: 99999;">
+      <div data-netlify-identity-button></div>
+    </div>
+
+    <!-- Decap CMS Core Script -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
+
     <script>
-      // Otomatis buka modal login Netlify jika belum authenticated
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
+      // Force-open Netlify Identity popup jika user belum terotentikasi
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+              window.netlifyIdentity.open();
+            }
+          });
+          window.netlifyIdentity.init();
+        }
+      });
     </script>
   </body>
 </html>
