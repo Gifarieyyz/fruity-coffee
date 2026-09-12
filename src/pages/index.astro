@@ -10,7 +10,7 @@ const allRecipes = await getCollection('recipes');
 <BaseLayout title="Home">
   <div id="loader-overlay" class="fixed inset-0 z-[9999] bg-[#5c0617] flex items-center justify-center transition-transform duration-800 ease-[cubic-bezier(0.87,0,0.13,1)] select-none">
     <div id="pineapple-mascot" class="relative flex items-center justify-center transition-transform duration-500 scale-90 cursor-pointer">
-      <img src="/pineapple.png" alt="Pineapple Mascot" class="w-28 h-28 md:w-40 md:h-40 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] animate-bounce" />
+      <img src="/pineapple.webp" alt="Pineapple Mascot" loading="eager" fetchpriority="high" class="w-28 h-28 md:w-40 md:h-40 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] animate-bounce" />
     </div>
   </div>
 
@@ -18,7 +18,7 @@ const allRecipes = await getCollection('recipes');
   
   <main 
     class="min-h-screen w-full bg-cover bg-center bg-no-repeat relative flex items-center justify-center overflow-hidden custom-cursor"
-    style="background-image: url('/bg1.png');"
+    style="background-image: url('/bg1.webp');"
   >
     <div class="absolute inset-0 bg-black/30 z-0 pointer-events-none"></div>
 
@@ -34,7 +34,7 @@ const allRecipes = await getCollection('recipes');
       </div>
     </div>
 
-    <h1 id="hi-there-text" class="relative z-10 text-white text-7xl md:text-[8rem] font-bold drop-shadow-2xl lowercase select-none transition-all duration-75 scale-90 opacity-0">
+    <h1 id="hi-there-text" class="relative z-10 text-white text-7xl md:text-[8rem] font-bold drop-shadow-2xl lowercase select-none transition-all duration-75 scale-100 opacity-100">
       hi there.
     </h1>
 
@@ -110,11 +110,11 @@ const allRecipes = await getCollection('recipes');
       ))}
     </div>
 
-    <div class="anim-on-scroll flex justify-center gap-6 mt-4 z-20">
-      <button id="beans-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+    <div class="anim-on-scroll flex justify-center gap-6 mt-6 z-20">
+      <button id="beans-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-2xl md:text-3xl cursor-pointer select-none">
         &#129120;
       </button>
-      <button id="beans-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+      <button id="beans-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-2xl md:text-3xl cursor-pointer select-none">
         &#129122;
       </button>
     </div>
@@ -142,13 +142,13 @@ const allRecipes = await getCollection('recipes');
   <section 
     id="gear-section" 
     class="min-h-screen md:min-h-[115vh] bg-[#fff5ec] border-t-4 border-[#5c0617] py-12 md:py-20 px-4 md:px-12 relative overflow-hidden flex flex-col justify-between custom-cursor bg-cover bg-bottom bg-no-repeat"
-    style="background-image: url('/bg2.jpg');"
+    style="background-image: url('/bg2.webp');"
   >
-    <div class="anim-on-scroll w-full max-w-[1500px] h-[680px] mx-auto relative hidden md:block my-auto">
+    <div class="anim-on-scroll w-full max-w-[1500px] h-[75vh] md:h-[680px] mx-auto relative block my-auto">
       
-      <div class="gear-item group sfx-trigger absolute left-[2%] top-[4%] w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
+      <div class="gear-item group sfx-trigger absolute left-[5%] top-[8%] md:left-[2%] md:top-[4%] w-[140px] md:w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
         <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 -rotate-12">
-          <img src="/timemore.png" alt="Timemore S3" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <img src="/timemore.webp" alt="Timemore S3" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
           <span class="absolute top-[8%] right-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
             1
           </span>
@@ -160,37 +160,37 @@ const allRecipes = await getCollection('recipes');
         </div>
       </div>
 
-      <div class="gear-item group sfx-trigger absolute left-[34%] top-[12%] w-[260px] lg:w-[310px] cursor-pointer z-10 animate-float-delayed">
+      <div class="gear-item group sfx-trigger absolute right-[5%] top-[28%] md:right-auto md:left-[34%] md:top-[12%] w-[160px] md:w-[260px] lg:w-[310px] cursor-pointer z-10 animate-float-delayed">
         <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 rotate-6">
-          <img src="/mugen.png" alt="Hario Switch & Mugen" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <img src="/mugen.webp" alt="Hario Switch & Mugen" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
           <span class="absolute top-[5%] right-[15px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
             2
           </span>
         </div>
-        <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
+        <div class="absolute -bottom-10 right-0 md:left-1/2 md:-translate-x-1/2 md:right-auto opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
           <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
             Hario Switch + Mugen Dripper
           </span>
         </div>
       </div>
 
-      <div class="gear-item group sfx-trigger absolute right-[2%] top-[3%] w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
+      <div class="gear-item group sfx-trigger absolute left-[10%] bottom-[25%] md:left-auto md:right-[2%] md:top-[3%] md:bottom-auto w-[130px] md:w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
         <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 rotate-12">
-          <img src="/paper.png" alt="Cafec Abaca Paper" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <img src="/paper.webp" alt="Cafec Abaca Paper" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
           <span class="absolute top-[10px] right-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
             3
           </span>
         </div>
-        <div class="absolute -bottom-10 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
+        <div class="absolute -bottom-10 left-0 md:right-0 md:left-auto opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
           <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
             Cafec Abaca & T-90 Paper Filters
           </span>
         </div>
       </div>
 
-      <div class="gear-item group sfx-trigger absolute right-[10%] top-[36%] w-[250px] lg:w-[290px] cursor-pointer z-10 animate-float-delayed">
+      <div class="gear-item group sfx-trigger absolute right-[5%] bottom-[5%] md:right-[10%] md:top-[36%] md:bottom-auto w-[140px] md:w-[250px] lg:w-[290px] cursor-pointer z-10 animate-float-delayed">
         <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 -rotate-15">
-          <img src="/mineral.png" alt="Water Minerals" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
+          <img src="/mineral.webp" alt="Water Minerals" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
           <span class="absolute top-[10px] left-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
             4
           </span>
@@ -202,25 +202,6 @@ const allRecipes = await getCollection('recipes');
         </div>
       </div>
 
-    </div>
-
-    <div class="grid grid-cols-2 gap-4 md:hidden py-4 z-10 my-auto">
-      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
-        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">1. Grinder</span>
-        <span class="font-bold text-sm text-[#5c0617]">Timemore S3</span>
-      </div>
-      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
-        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">2. Dripper</span>
-        <span class="font-bold text-sm text-[#5c0617]">Hario Switch</span>
-      </div>
-      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
-        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">3. Paper</span>
-        <span class="font-bold text-sm text-[#5c0617]">Cafec Abaca</span>
-      </div>
-      <div class="flex flex-col items-center p-4 bg-[#f8e5d6] rounded-2xl border-4 border-[#5c0617] shadow-[4px_4px_0px_#5c0617]">
-        <span class="bg-[#5c0617] text-[#ecec53] text-[11px] font-bold px-3 py-0.5 rounded-full mb-2">4. Water</span>
-        <span class="font-bold text-sm text-[#5c0617]">DIY Minerals</span>
-      </div>
     </div>
 
   </section>
@@ -293,23 +274,37 @@ const allRecipes = await getCollection('recipes');
       ))}
     </div>
 
-    <div class="anim-on-scroll flex justify-center gap-6 mt-4 z-20">
-      <button id="recipes-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+    <div class="anim-on-scroll flex justify-center gap-6 mt-6 z-20">
+      <button id="recipes-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-2xl md:text-3xl cursor-pointer select-none">
         &#129120;
       </button>
-      <button id="recipes-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-14 h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-3xl cursor-pointer select-none">
+      <button id="recipes-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center text-2xl md:text-3xl cursor-pointer select-none">
         &#129122;
       </button>
     </div>
 
   </section>
 
+  <!-- FOOTER DENGAN BACKGROUND VIDEO -->
   <footer 
     id="footer-section" 
-    class="min-h-[60vh] border-t-4 border-[#5c0617] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center bg-cover bg-bottom bg-no-repeat overflow-hidden custom-cursor"
-    style="background-image: url('/walking.gif');" 
+    class="min-h-[60vh] border-t-4 border-[#5c0617] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center overflow-hidden custom-cursor"
   >
-   
+    <video 
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      class="absolute inset-0 w-full h-full object-cover object-bottom z-0 pointer-events-none"
+    >
+      <source src="/walk.mp4" type="video/mp4" />
+      <source src="/walking.webm" type="video/webm" />
+      Browser kamu tidak mendukung tag video.
+    </video>
+
+    <div class="absolute inset-0 bg-black/10 z-0 pointer-events-none"></div>
+
+    
   </footer>
 
   <div id="bean-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
