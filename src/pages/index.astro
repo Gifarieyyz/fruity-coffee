@@ -7,10 +7,11 @@ const allBeans = await getCollection('beans');
 const allRecipes = await getCollection('recipes');
 ---
 
-<BaseLayout title="Home">
-  <div id="loader-overlay" class="fixed inset-0 z-[9999] bg-[#5c0617] flex items-center justify-center transition-transform duration-800 ease-[cubic-bezier(0.87,0,0.13,1)] select-none">
-    <div id="pineapple-mascot" class="relative flex items-center justify-center transition-transform duration-500 scale-90 cursor-pointer">
-      <img src="/pineapple.webp" alt="Pineapple Mascot" loading="eager" fetchpriority="high" class="w-28 h-28 md:w-40 md:h-40 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] animate-bounce" />
+<BaseLayout title="Fruity Coffee Club">
+  <!-- LOADER DENGAN POLA CHECKERBOARD MERAH BERGERAK -->
+  <div id="loader-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.87,0,0.13,1)] select-none" style="background-color: #5c0617; background-image: linear-gradient(45deg, #70081d 25%, transparent 25%), linear-gradient(-45deg, #70081d 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #70081d 75%), linear-gradient(-45deg, transparent 75%, #70081d 75%); background-size: 50px 50px; background-position: 0 0, 0 25px, 25px -25px, -25px 0px; animation: loaderCheckerMove 4s linear infinite;">
+    <div id="pineapple-mascot">
+      <img src="/pineapple.webp" alt="Pineapple Mascot" loading="eager" fetchpriority="high" class="w-28 h-28 md:w-36 md:h-36 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.2)] animate-bounce" />
     </div>
   </div>
 
@@ -71,13 +72,12 @@ const allRecipes = await getCollection('recipes');
       </div>
     </div>
 
-    <div class="anim-on-scroll px-6 md:px-20 mb-4">
-      <h2 class="font-['DM_Serif_Display',serif] text-5xl md:text-7xl text-[#5c0617] mb-4 hover:translate-x-2 transition-transform duration-300 cursor-default">
-        Recent Brews
-      </h2>
-      <p class="font-['Space_Grotesk',sans-serif] text-lg font-bold text-[#e05263] uppercase tracking-widest">
-        Geser & klik untuk detail beans ➔
-      </p>
+    <div class="anim-on-scroll px-6 md:px-20 mb-8 pt-4 flex flex-col items-start">
+      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_#5c0617] animate-float cursor-default -rotate-2">
+        <h2 class="font-['Fredoka_One',sans-serif] font-normal text-4xl md:text-6xl text-white m-0 leading-none uppercase tracking-wider">
+          Recent Brews
+        </h2>
+      </div>
     </div>
 
     <div 
@@ -86,7 +86,7 @@ const allRecipes = await getCollection('recipes');
     >
       {allBeans.map((bean, i) => (
         <div 
-          class={`bean-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
+          class={`bean-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_#5c0617] ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
           data-name={bean.data.name}
           data-origin={bean.data.origin}
           data-process={bean.data.process}
@@ -95,16 +95,16 @@ const allRecipes = await getCollection('recipes');
           data-review={bean.body}
         >
           <div>
-            <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110">
+            <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110 shadow-[2px_2px_0px_#5c0617]">
               {bean.data.roaster}
             </div>
-            <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl leading-tight mb-4 text-[#5c0617]">
+            <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl font-bold leading-tight mb-4 text-[#5c0617]">
               {bean.data.name}
             </h3>
           </div>
-          <div class="mt-8 border-t-2 border-[#5c0617]/20 pt-4">
-            <span class="font-['Space_Grotesk',sans-serif] font-bold text-xs uppercase tracking-widest text-[#5c0617] block mb-1">Notes:</span>
-            <p class="font-bold text-[#e05263] text-sm md:text-base">{bean.data.notes}</p>
+          <div class="mt-8 border-t-2 border-[#5c0617]/20 pt-4 flex items-center justify-between group">
+            <span class="font-bold text-xs uppercase tracking-widest text-[#e05263] group-hover:translate-x-1 transition-transform">Open Details</span>
+            <span class="text-xl group-hover:translate-x-2 transition-transform">➔</span>
           </div>
         </div>
       ))}
@@ -237,13 +237,12 @@ const allRecipes = await getCollection('recipes');
       </div>
     </div>
 
-    <div class="anim-on-scroll px-6 md:px-20 mb-4">
-      <h2 class="font-['DM_Serif_Display',serif] text-5xl md:text-7xl text-[#5c0617] mb-4 hover:translate-x-2 transition-transform duration-300 cursor-default">
-        Brewing Recipes
-      </h2>
-      <p class="font-['Space_Grotesk',sans-serif] text-lg font-bold text-[#e05263] uppercase tracking-widest">
-        Geser & klik untuk lihat parameter ➔
-      </p>
+    <div class="anim-on-scroll px-6 md:px-20 mb-8 pt-4 flex flex-col items-start">
+      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_#5c0617] animate-float-delayed cursor-default rotate-2">
+        <h2 class="font-['Fredoka_One',sans-serif] font-normal text-4xl md:text-6xl text-white m-0 leading-none uppercase tracking-wider">
+          Brewing Recipes
+        </h2>
+      </div>
     </div>
 
     <div 
@@ -252,7 +251,7 @@ const allRecipes = await getCollection('recipes');
     >
       {allRecipes.map((recipe, i) => (
         <div 
-          class={`recipe-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
+          class={`recipe-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-4 border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_#5c0617] ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
           data-title={recipe.data.title}
           data-dripper={recipe.data.dripper}
           data-ratio={recipe.data.ratio}
@@ -261,17 +260,17 @@ const allRecipes = await getCollection('recipes');
           data-instructions={recipe.body}
         >
           <div>
-            <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110">
+            <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110 shadow-[2px_2px_0px_#5c0617]">
               {recipe.data.dripper}
             </div>
             
-            <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl leading-tight mb-4 text-[#5c0617]">
+            <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl font-bold leading-tight mb-4 text-[#5c0617]">
               {recipe.data.title}
             </h3>
           </div>
 
           <div class="mt-8 border-t-2 border-[#5c0617]/20 pt-4 flex items-center justify-between group">
-            <span class="font-bold text-xs uppercase tracking-widest text-[#e05263] group-hover:translate-x-1 transition-transform">Buka Resep</span>
+            <span class="font-bold text-xs uppercase tracking-widest text-[#e05263] group-hover:translate-x-1 transition-transform">Open Recipe</span>
             <span class="text-xl group-hover:translate-x-2 transition-transform">➔</span>
           </div>
         </div>
@@ -293,23 +292,15 @@ const allRecipes = await getCollection('recipes');
 
   </section>
 
-  <!-- FOOTER DENGAN BACKGROUND VIDEO -->
+  <!-- FOOTER DENGAN POLA CHECKERBOARD MERAH BERGERAK -->
   <footer 
     id="footer-section" 
-    class="min-h-[60vh] border-t-4 border-[#5c0617] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center overflow-hidden custom-cursor"
+    class="min-h-[5vh] border-t-4 border-[#ecec53] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center overflow-hidden custom-cursor"
+    style="background-color: #5c0617; background-image: linear-gradient(45deg, #70081d 25%, transparent 25%), linear-gradient(-45deg, #70081d 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #70081d 75%), linear-gradient(-45deg, transparent 75%, #70081d 75%); background-size: 40px 40px; background-position: 0 0, 0 20px, 20px -20px, -20px 0px; animation: footerCheckerMove 4s linear infinite;"
   >
-    <video 
-      autoplay 
-      loop 
-      muted 
-      playsinline 
-      preload="auto"
-      class="absolute inset-0 w-full h-full object-cover object-bottom z-0 pointer-events-none"
-    >
-      <source src="/walk.mp4" type="video/mp4" />
-      <source src="/walking.webm" type="video/webm" />
-      Browser kamu tidak mendukung tag video.
-    </video>
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[#5c0617] font-bold">
+      <p class="bg-[#ecec53] px-4 py-2 border-2 border-[#5c0617] rounded-xl shadow-[4px_4px_0px_#fff5ec] whitespace-nowrap">© 2026 Fruity Coffee Club</p>
+    </div>
 
     <div class="absolute inset-0 bg-black/10 z-0 pointer-events-none"></div>
 
@@ -327,7 +318,7 @@ const allRecipes = await getCollection('recipes');
         X
       </button>
 
-      <h2 id="modal-name" class="font-['DM_Serif_Display',serif] text-4xl md:text-5xl mb-8 text-[#5c0617] pr-12 leading-tight"></h2>
+      <h2 id="modal-name" class="font-['Fredoka_One',sans-serif] text-4xl md:text-5xl mb-8 text-[#5c0617] pr-12 leading-tight"></h2>
       
       <div class="mb-8 pb-8 border-b-2 border-[#5c0617]/20">
         <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-4">Beans Info</h3>
@@ -374,7 +365,7 @@ const allRecipes = await getCollection('recipes');
         <div class="flex flex-col gap-3 font-['Space_Grotesk',sans-serif] text-xs md:text-sm text-[#5c0617]">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div class="flex items-center justify-between gap-2">
-              <label for="target-water-input" class="font-bold">Total Air (ml):</label>
+              <label for="target-water-input" class="font-bold">Total Water (ml):</label>
               <input id="target-water-input" type="number" value="250" step="10" min="100" max="1000" class="w-24 px-2 py-1 font-bold text-center border-2 border-[#5c0617] rounded-lg bg-[#fff5ec]" />
             </div>
             <div class="flex items-center justify-between gap-2">
@@ -389,7 +380,7 @@ const allRecipes = await getCollection('recipes');
           </div>
 
           <div class="flex items-center justify-between gap-2 pt-1">
-            <label for="bean-process-select" class="font-bold">Proses Beans:</label>
+            <label for="bean-process-select" class="font-bold">Bean Process:</label>
             <select id="bean-process-select" class="w-48 px-2 py-1 font-bold text-center border-2 border-[#5c0617] rounded-lg bg-[#fff5ec]">
               <option value="washed">Washed / Wet</option>
               <option value="anaerobic" selected>Anaerobic / Thermal</option>
@@ -400,11 +391,11 @@ const allRecipes = await getCollection('recipes');
 
           <div class="grid grid-cols-3 gap-2 text-center pt-3 border-t-2 border-[#5c0617]/30">
             <div class="bg-[#fff5ec] p-2 rounded-xl border-2 border-[#5c0617]">
-              <span class="block text-[10px] uppercase font-bold text-[#e05263]">Dosis Kopi</span>
+              <span class="block text-[10px] uppercase font-bold text-[#e05263]">Coffee Dose</span>
               <span id="coffee-dose-res" class="font-black text-sm md:text-base">16.1 g</span>
             </div>
             <div class="bg-[#fff5ec] p-2 rounded-xl border-2 border-[#5c0617]">
-              <span class="block text-[10px] uppercase font-bold text-[#5c0617]">Suhu Air</span>
+              <span class="block text-[10px] uppercase font-bold text-[#5c0617]">Water Temp</span>
               <span id="ideal-temp-res" class="font-black text-sm md:text-base">92°C</span>
             </div>
             <div class="bg-[#fff5ec] p-2 rounded-xl border-2 border-[#5c0617]">
@@ -530,7 +521,7 @@ const allRecipes = await getCollection('recipes');
 
     setTimeout(() => {
       pineappleMascot.classList.remove('scale-90');
-      pineappleMascot.classList.add('scale-125');
+      pineappleMascot.classList.add('scale-110');
     }, 400);
 
     setTimeout(() => {
@@ -541,7 +532,7 @@ const allRecipes = await getCollection('recipes');
         hiText.classList.remove('scale-90', 'opacity-0');
         hiText.classList.add('scale-100', 'opacity-100');
       }
-    }, 900);
+    }, 1000);
   }
 
   // REUSABLE SWIPE FOCUS CAROUSEL LOGIC
@@ -747,6 +738,8 @@ const allRecipes = await getCollection('recipes');
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
   html { scroll-behavior: smooth; }
   
   .hide-scrollbar::-webkit-scrollbar { display: none; }
@@ -768,9 +761,21 @@ const allRecipes = await getCollection('recipes');
   /* Polkadot Background Pattern */
   .polkadot-bg {
     background-color: #f8e5d6;
-    background-image: radial-gradient(rgba(92, 6, 23, 0.25) 5%, transparent 0.5%);
+    background-image: radial-gradient(rgba(92, 6, 23, 0.25) 15%, transparent 0.5%);
     background-size: 24px 24px;
     background-position: 0 0;
+  }
+
+  /* Animasi Bergerak pada Loader Checkerboard */
+  @keyframes loaderCheckerMove {
+    0% { background-position: 0 0, 0 25px, 25px -25px, -25px 0px; }
+    100% { background-position: 50px 50px, 50px 75px, 75px 25px, 25px 50px; }
+  }
+
+  /* Animasi Bergerak pada Footer Checkerboard */
+  @keyframes footerCheckerMove {
+    0% { background-position: 0 0, 0 20px, 20px -20px, -20px 0px; }
+    100% { background-position: 40px 40px, 40px 60px, 60px 20px, 20px 40px; }
   }
 
   /* Animasi Fade-in Scroll Smooth & Bouncy */
