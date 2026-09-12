@@ -10,7 +10,7 @@ export default config({
       label: 'Beans',
       slugField: 'name',
       path: 'src/content/beans/*',
-      // Ubah formatnya jadi explicitly markdown dengan frontmatter
+      // INI KUNCINYA: Supaya jadi file .md standar
       format: { content: 'content' }, 
       schema: {
         name: fields.slug({ name: { label: 'Nama Beans' } }),
@@ -25,6 +25,7 @@ export default config({
       label: 'Recipes',
       slugField: 'title',
       path: 'src/content/recipes/*',
+      // INI JUGA: Supaya recipes jadi .md standar
       format: { content: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Judul Resep' } }),
