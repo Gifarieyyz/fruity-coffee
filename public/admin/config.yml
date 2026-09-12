@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: Gifarieyyz/fruity-coffee # Ganti sesuai nama repo GitHub kamu
+  name: git-gateway
   branch: main
 
 media_folder: "public/uploads"

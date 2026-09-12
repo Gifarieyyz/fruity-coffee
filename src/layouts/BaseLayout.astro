@@ -1,5 +1,10 @@
 ---
-const { title = "Fruity Coffee Club" } = Astro.props;
+interface Props {
+  title?: string;
+}
+
+const { title = "Fruity Coffee Club 🍍" } = Astro.props;
+import '../styles/global.css'; // atau lokasi file CSS/Tailwind lu
 ---
 
 <!DOCTYPE html>
@@ -8,20 +13,8 @@ const { title = "Fruity Coffee Club" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    
-    <!-- Netlify Identity Widget (Untuk menangkap token invite & redirect) -->
+    <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
   </head>
   <body class="bg-[#fff5ec] text-[#5c0617] font-sans">
     <slot />
