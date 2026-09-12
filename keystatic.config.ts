@@ -11,7 +11,7 @@ export default config({
       slugField: 'name',
       path: 'src/content/beans/*',
       // INI KUNCINYA: Supaya jadi file .md standar
-      format: { content: 'content' }, 
+      format: { contentField: 'content' },
       schema: {
         name: fields.slug({ name: { label: 'Nama Beans' } }),
         origin: fields.text({ label: 'Origin' }),
@@ -26,7 +26,7 @@ export default config({
       slugField: 'title',
       path: 'src/content/recipes/*',
       // INI JUGA: Supaya recipes jadi .md standar
-      format: { content: 'content' },
+      format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Judul Resep' } }),
         dripper: fields.text({ label: 'Dripper' }),
