@@ -1,28 +1,14 @@
----
----
 <!DOCTYPE html>
 <html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fruity Coffee Club — Admin Panel 🍍</title>
-    <!-- Include Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>Fruity Space — Admin Panel 🍍</title>
+    
+    <!-- BARIS INI YANG PALING PENTING: Memaksa CMS mencari config di tempat yang benar -->
+    <link href="/fruity-space/config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
-    <!-- Include Decap CMS Script -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-      // Inisialisasi Netlify Identity secara eksplisit setelah DOM siap
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", function(user) {
-          if (!user) {
-            window.netlifyIdentity.on("login", function() {
-              document.location.reload();
-            });
-          }
-        });
-      }
-    </script>
   </body>
 </html>
