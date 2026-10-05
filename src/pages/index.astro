@@ -8,38 +8,24 @@ const allRecipes = await getCollection('recipes');
 ---
 
 <BaseLayout title="Fruity Coffee Club">
-  <!-- LOADER DENGAN POLA CHECKERBOARD MERAH BERGERAK -->
-  <div id="loader-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center transition-transform duration-1000 ease-[cubic-bezier(0.87,0,0.13,1)] select-none" style="background-color: #5c0617; background-image: linear-gradient(45deg, #70081d 25%, transparent 25%), linear-gradient(-45deg, #70081d 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #70081d 75%), linear-gradient(-45deg, transparent 75%, #70081d 75%); background-size: 50px 50px; background-position: 0 0, 0 25px, 25px -25px, -25px 0px; animation: loaderCheckerMove 4s linear infinite;">
-    <div id="pineapple-mascot">
-      <img src="/pineapple.webp" alt="Pineapple Mascot" loading="eager" fetchpriority="high" class="w-28 h-28 md:w-36 md:h-36 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.2)] animate-bounce" />
-    </div>
-  </div>
-
   <Navbar />
-  
-  <main 
-    class="min-h-screen w-full bg-cover bg-center bg-no-repeat relative flex items-center justify-center overflow-hidden custom-cursor"
+
+  <main
+    class="min-h-screen w-full bg-cover bg-center bg-no-repeat relative flex items-center justify-center overflow-hidden"
     style="background-image: url('/bg1.webp');"
   >
     <div class="absolute inset-0 bg-black/30 z-0 pointer-events-none"></div>
 
-    <div class="absolute top-28 left-8 md:left-16 z-20 animate-float pointer-events-auto">
-      <div class="sticker-pop bg-[#ecec53] text-[#5c0617] border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl -rotate-12 shadow-[4px_4px_0px_#5c0617] cursor-pointer text-sm md:text-base select-none">
-        100% JUICY! 🍍
-      </div>
+    <div class="relative z-10 text-center px-6">
+      <p class="text-[#ecec53] font-['Space_Grotesk',sans-serif] font-bold tracking-[0.35em] uppercase text-xs md:text-sm mb-4">
+        Fruity Coffee Club
+      </p>
+      <h1 class="text-white text-7xl md:text-[8rem] font-bold drop-shadow-2xl lowercase select-none">
+        hi there.
+      </h1>
     </div>
 
-    <div class="absolute bottom-32 right-8 md:right-20 z-20 animate-float-delayed pointer-events-auto">
-      <div class="sticker-pop bg-[#e05263] text-white border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl rotate-12 shadow-[4px_4px_0px_#5c0617] cursor-pointer text-sm md:text-base select-none">
-        SWEET & ACIDIC 🍋
-      </div>
-    </div>
-
-    <h1 id="hi-there-text" class="relative z-10 text-white text-7xl md:text-[8rem] font-bold drop-shadow-2xl lowercase select-none transition-all duration-75 scale-100 opacity-100">
-      hi there.
-    </h1>
-
-    <a href="#beans-section" class="sfx-trigger absolute bottom-12 left-1/2 -translate-x-1/2 z-20 text-white opacity-80 hover:opacity-100 hover:text-[#ecec53] hover:scale-125 transition-all duration-300 animate-bounce cursor-pointer">
+    <a href="#beans-section" class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 text-white opacity-80 hover:opacity-100 hover:text-[#ecec53] hover:scale-110 transition-all duration-300 cursor-pointer">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-10 h-10 md:w-12 md:h-12 drop-shadow-md">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
       </svg>
@@ -49,44 +35,34 @@ const allRecipes = await getCollection('recipes');
   <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#ecec53] py-3 flex items-center select-none w-full">
     <div class="marquee-track flex whitespace-nowrap">
       <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
-        <span>FRUITY COFFEE CLUB 🍍</span>
-        <span>MANUAL BREW DAILY 🍓</span>
-        <span>SWEET & JUICY 🍇</span>
-        <span>BRIGHT ACIDITY 🍋</span>
-        <span>NO ROASTY BITS 🍒</span>
+        <span>FRUITY COFFEE CLUB</span>
+        <span>MANUAL BREW DAILY</span>
+        <span>LIGHT ROAST ONLY</span>
       </div>
       <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
-        <span>FRUITY COFFEE CLUB 🍍</span>
-        <span>MANUAL BREW DAILY 🍓</span>
-        <span>SWEET & JUICY 🍇</span>
-        <span>BRIGHT ACIDITY 🍋</span>
-        <span>NO ROASTY BITS 🍒</span>
+        <span>FRUITY COFFEE CLUB</span>
+        <span>MANUAL BREW DAILY</span>
+        <span>LIGHT ROAST ONLY</span>
       </div>
     </div>
   </div>
 
-  <section id="beans-section" class="min-h-screen border-t-4 border-[#5c0617] py-20 flex flex-col justify-center polkadot-bg relative overflow-hidden custom-cursor">
-    <div class="absolute top-10 right-10 z-20 animate-float hidden md:block">
-      <div class="sticker-pop bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl rotate-6 shadow-[4px_4px_0px_#5c0617] cursor-pointer select-none">
-        HOT BREW ☕
-      </div>
-    </div>
-
+  <section id="beans-section" class="min-h-screen border-t-4 border-[#5c0617] py-20 flex flex-col justify-center polkadot-bg relative overflow-hidden">
     <div class="anim-on-scroll px-6 md:px-20 mb-8 pt-4 flex flex-col items-start">
-      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_2px_#5c0617] animate-float cursor-default -rotate-2">
+      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_2px_#5c0617] cursor-default -rotate-2">
         <h2 class="font-['Fredoka_One',sans-serif] font-normal text-4xl md:text-6xl text-white m-0 leading-none uppercase tracking-wider">
           Recent Brews
         </h2>
       </div>
     </div>
 
-    <div 
-      id="beans-carousel" 
+    <div
+      id="beans-carousel"
       class="anim-on-scroll flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-12 px-[15vw] md:px-[40vw] py-12 hide-scrollbar w-full items-center cursor-grab active:cursor-grabbing scroll-smooth"
     >
       {allBeans.map((bean, i) => (
-        <div 
-          class={`bean-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_2px_#5c0617] ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
+        <div
+          class={`bean-card snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_2px_#5c0617] ${i % 2 === 0 ? 'hover:-rotate-2' : 'hover:rotate-2'}`}
           data-name={bean.data.name}
           data-origin={bean.data.origin}
           data-process={bean.data.process}
@@ -111,12 +87,12 @@ const allRecipes = await getCollection('recipes');
     </div>
 
     <div class="anim-on-scroll flex justify-center gap-6 mt-6 z-20">
-      <button id="beans-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
+      <button id="beans-prev" class="btn-playful bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
         </svg>
       </button>
-      <button id="beans-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
+      <button id="beans-next" class="btn-playful bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
         </svg>
@@ -127,35 +103,28 @@ const allRecipes = await getCollection('recipes');
   <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#fff5ec] py-3 flex items-center select-none w-full">
     <div class="marquee-track-reverse flex whitespace-nowrap">
       <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
-        <span>POUR OVER ENTHUSIAST ☕</span>
-        <span>HARIO SWITCH 🍎</span>
-        <span>TIMEMORE S3 🍊</span>
-        <span>FRUITY COFFEE CLUB 🍍</span>
-        <span>LIGHT ROAST ONLY 🍑</span>
+        <span>POUR OVER ENTHUSIAST</span>
+        <span>HARIO SWITCH</span>
+        <span>TIMEMORE S3</span>
       </div>
       <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
-        <span>POUR OVER ENTHUSIAST ☕</span>
-        <span>HARIO SWITCH 🍎</span>
-        <span>TIMEMORE S3 🍊</span>
-        <span>FRUITY COFFEE CLUB 🍍</span>
-        <span>LIGHT ROAST ONLY 🍑</span>
+        <span>POUR OVER ENTHUSIAST</span>
+        <span>HARIO SWITCH</span>
+        <span>TIMEMORE S3</span>
       </div>
     </div>
   </div>
 
-  <section 
-    id="gear-section" 
-    class="min-h-screen md:min-h-[115vh] bg-[#fff5ec] border-t-4 border-[#5c0617] py-12 md:py-20 px-4 md:px-12 relative overflow-hidden flex flex-col justify-between custom-cursor bg-cover bg-bottom bg-no-repeat"
+  <section
+    id="gear-section"
+    class="min-h-screen md:min-h-[115vh] bg-[#fff5ec] border-t-4 border-[#5c0617] py-12 md:py-20 px-4 md:px-12 relative overflow-hidden flex flex-col justify-between bg-cover bg-bottom bg-no-repeat"
     style="background-image: url('/bg2.webp');"
   >
     <div class="anim-on-scroll w-full max-w-[1500px] h-[75vh] md:h-[680px] mx-auto relative block my-auto">
-      
-      <div class="gear-item group sfx-trigger absolute left-[5%] top-[8%] md:left-[2%] md:top-[4%] w-[140px] md:w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
-        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 -rotate-12">
+
+      <div class="gear-item group absolute left-[5%] top-[8%] md:left-[2%] md:top-[4%] w-[140px] md:w-[240px] lg:w-[280px] cursor-pointer z-10">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-110 -rotate-12">
           <img src="/timemore.webp" alt="Timemore S3" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
-          <span class="absolute top-[8%] right-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
-            1
-          </span>
         </div>
         <div class="absolute -bottom-10 left-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
           <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
@@ -164,12 +133,9 @@ const allRecipes = await getCollection('recipes');
         </div>
       </div>
 
-      <div class="gear-item group sfx-trigger absolute right-[5%] top-[28%] md:right-auto md:left-[34%] md:top-[12%] w-[160px] md:w-[260px] lg:w-[310px] cursor-pointer z-10 animate-float-delayed">
-        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 rotate-6">
+      <div class="gear-item group absolute right-[5%] top-[28%] md:right-auto md:left-[34%] md:top-[12%] w-[160px] md:w-[260px] lg:w-[310px] cursor-pointer z-10">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-110 rotate-6">
           <img src="/mugen.webp" alt="Hario Switch & Mugen" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
-          <span class="absolute top-[5%] right-[15px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
-            2
-          </span>
         </div>
         <div class="absolute -bottom-10 right-0 md:left-1/2 md:-translate-x-1/2 md:right-auto opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
           <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
@@ -178,12 +144,9 @@ const allRecipes = await getCollection('recipes');
         </div>
       </div>
 
-      <div class="gear-item group sfx-trigger absolute left-[10%] bottom-[25%] md:left-auto md:right-[2%] md:top-[3%] md:bottom-auto w-[130px] md:w-[240px] lg:w-[280px] cursor-pointer z-10 animate-float">
-        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 rotate-12">
+      <div class="gear-item group absolute left-[10%] bottom-[25%] md:left-auto md:right-[2%] md:top-[3%] md:bottom-auto w-[130px] md:w-[240px] lg:w-[280px] cursor-pointer z-10">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-110 rotate-12">
           <img src="/paper.webp" alt="Cafec Abaca Paper" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
-          <span class="absolute top-[10px] right-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
-            3
-          </span>
         </div>
         <div class="absolute -bottom-10 left-0 md:right-0 md:left-auto opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
           <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
@@ -192,12 +155,9 @@ const allRecipes = await getCollection('recipes');
         </div>
       </div>
 
-      <div class="gear-item group sfx-trigger absolute right-[5%] bottom-[5%] md:right-[10%] md:top-[36%] md:bottom-auto w-[140px] md:w-[250px] lg:w-[290px] cursor-pointer z-10 animate-float-delayed">
-        <div class="relative transition-all duration-500 ease-out group-hover:scale-115 group-hover:rotate-0 -rotate-15">
+      <div class="gear-item group absolute right-[5%] bottom-[5%] md:right-[10%] md:top-[36%] md:bottom-auto w-[140px] md:w-[250px] lg:w-[290px] cursor-pointer z-10">
+        <div class="relative transition-all duration-500 ease-out group-hover:scale-110 -rotate-15">
           <img src="/mineral.webp" alt="Water Minerals" loading="lazy" decoding="async" class="w-full h-auto filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.35)] select-none" />
-          <span class="absolute top-[10px] left-[10px] bg-[#5c0617] text-[#ecec53] text-sm font-black w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#fff5ec] shadow-lg transition-all duration-300 group-hover:scale-125 group-hover:bg-[#e05263] group-hover:rotate-12">
-            4
-          </span>
         </div>
         <div class="absolute -bottom-10 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30 group-hover:translate-y-1">
           <span class="bg-[#5c0617] text-[#ecec53] font-['Space_Grotesk',sans-serif] text-xs md:text-sm font-bold px-4 py-2 rounded-xl border-2 border-[#ecec53] whitespace-nowrap shadow-[4px_4px_0px_#5c0617]">
@@ -213,45 +173,34 @@ const allRecipes = await getCollection('recipes');
   <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#ecec53] py-3 flex items-center select-none w-full">
     <div class="marquee-track flex whitespace-nowrap">
       <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
-        <span>POUR OVER ENTHUSIAST ☕</span>
-        <span>HARIO SWITCH 🍎</span>
-        <span>TIMEMORE S3 🍊</span>
-        <span>FRUITY COFFEE CLUB 🍍</span>
-        <span>LIGHT ROAST ONLY 🍑</span>
+        <span>POUR OVER ENTHUSIAST</span>
+        <span>HARIO SWITCH</span>
+        <span>TIMEMORE S3</span>
       </div>
       <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
-        <span>POUR OVER ENTHUSIAST ☕</span>
-        <span>HARIO SWITCH 🍎</span>
-        <span>TIMEMORE S3 🍊</span>
-        <span>FRUITY COFFEE CLUB 🍍</span>
-        <span>LIGHT ROAST ONLY 🍑</span>
+        <span>POUR OVER ENTHUSIAST</span>
+        <span>HARIO SWITCH</span>
+        <span>TIMEMORE S3</span>
       </div>
     </div>
   </div>
 
-  <section id="recipes-section" class="min-h-screen border-t-4 border-[#5c0617] py-20 flex flex-col justify-center polkadot-bg relative overflow-hidden custom-cursor">
-    
-    <div class="absolute bottom-16 left-12 z-20 animate-float-delayed hidden md:block">
-      <div class="sticker-pop bg-[#e05263] text-white border-4 border-[#5c0617] font-black px-4 py-2 rounded-2xl -rotate-6 shadow-[4px_4px_0px_#5c0617] cursor-pointer select-none">
-        93°C WATER 💧
-      </div>
-    </div>
-
+  <section id="recipes-section" class="min-h-screen border-t-4 border-[#5c0617] py-20 flex flex-col justify-center polkadot-bg relative overflow-hidden">
     <div class="anim-on-scroll px-6 md:px-20 mb-8 pt-4 flex flex-col items-start">
-      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_2px_#5c0617] animate-float-delayed cursor-default rotate-2">
+      <div class="inline-block bg-[#e05263] border-4 border-[#5c0617] rounded-full px-8 py-3 md:px-10 md:py-4 mb-4 shadow-[8px_8px_0px_2px_#5c0617] cursor-default rotate-2">
         <h2 class="font-['Fredoka_One',sans-serif] font-normal text-4xl md:text-6xl text-white m-0 leading-none uppercase tracking-wider">
           Brewing Recipes
         </h2>
       </div>
     </div>
 
-    <div 
-      id="recipes-carousel" 
+    <div
+      id="recipes-carousel"
       class="anim-on-scroll flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-12 px-[15vw] md:px-[40vw] py-12 hide-scrollbar w-full items-center cursor-grab active:cursor-grabbing scroll-smooth z-10"
     >
       {allRecipes.map((recipe, i) => (
-        <div 
-          class={`recipe-card sfx-trigger snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_2px_#5c0617] ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
+        <div
+          class={`recipe-card snap-center shrink-0 w-[290px] md:w-[370px] bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-6 md:p-8 cursor-pointer transition-all duration-300 ease-out flex flex-col justify-between shadow-[8px_8px_0px_2px_#5c0617] ${i % 2 === 0 ? 'hover:rotate-2' : 'hover:-rotate-2'}`}
           data-title={recipe.data.title}
           data-dripper={recipe.data.dripper}
           data-ratio={recipe.data.ratio}
@@ -263,7 +212,7 @@ const allRecipes = await getCollection('recipes');
             <div class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617] transition-transform duration-300 hover:scale-110 shadow-[2px_2px_0px_#5c0617]">
               {recipe.data.dripper}
             </div>
-            
+
             <h3 class="font-['DM_Serif_Display',serif] text-3xl md:text-4xl font-bold leading-tight mb-4 text-[#5c0617]">
               {recipe.data.title}
             </h3>
@@ -278,12 +227,12 @@ const allRecipes = await getCollection('recipes');
     </div>
 
     <div class="anim-on-scroll flex justify-center gap-6 mt-6 z-20">
-      <button id="recipes-prev" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
+      <button id="recipes-prev" class="btn-playful bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
         </svg>
       </button>
-      <button id="recipes-next" class="btn-playful sfx-trigger bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
+      <button id="recipes-next" class="btn-playful bg-[#fff5ec] text-[#5c0617] border-4 border-[#5c0617] w-12 h-12 md:w-14 md:h-14 rounded-full font-black shadow-[4px_4px_0px_#5c0617] hover:bg-[#ecec53] hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center cursor-pointer select-none">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
         </svg>
@@ -293,15 +242,11 @@ const allRecipes = await getCollection('recipes');
   </section>
 
   <!-- FOOTER DENGAN POLA CHECKERBOARD MERAH BERGERAK -->
-  <footer 
-    id="footer-section" 
-    class="min-h-[5vh] border-t-4 border-[#ecec53] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center overflow-hidden custom-cursor"
+  <footer
+    id="footer-section"
+    class="min-h-[5vh] border-t-4 border-[#ecec53] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center overflow-hidden"
     style="background-color: #5c0617; background-image: linear-gradient(45deg, #70081d 25%, transparent 25%), linear-gradient(-45deg, #70081d 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #70081d 75%), linear-gradient(-45deg, transparent 75%, #70081d 75%); background-size: 40px 40px; background-position: 0 0, 0 20px, 20px -20px, -20px 0px; animation: footerCheckerMove 4s linear infinite;"
   >
-    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[#5c0617] font-bold">
-      <p class="bg-[#ecec53] px-4 py-2 border-2 border-[#5c0617] rounded-xl shadow-[4px_4px_0px_#fff5ec] whitespace-nowrap">© 2026 Fruity Coffee Club</p>
-    </div>
-
     <div class="absolute inset-0 bg-black/10 z-0 pointer-events-none"></div>
 
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[#5c0617] font-bold">
@@ -311,15 +256,15 @@ const allRecipes = await getCollection('recipes');
 
   <div id="bean-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
     <div id="modal-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer opacity-0 transition-opacity duration-300"></div>
-    
+
     <div id="modal-content" class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_2px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
-      
-      <button id="close-modal" class="sfx-trigger absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
+
+      <button id="close-modal" class="absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
         X
       </button>
 
       <h2 id="modal-name" class="font-['Fredoka_One',sans-serif] text-4xl md:text-5xl mb-8 text-[#5c0617] pr-12 leading-tight"></h2>
-      
+
       <div class="mb-8 pb-8 border-b-2 border-[#5c0617]/20">
         <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-4">Beans Info</h3>
         <ul class="space-y-2 font-['Space_Grotesk',sans-serif] text-lg text-[#5c0617]">
@@ -329,7 +274,7 @@ const allRecipes = await getCollection('recipes');
           <li><strong>• Notes:</strong> <span id="modal-notes" class="text-[#e05263] font-bold"></span></li>
         </ul>
       </div>
-      
+
       <div>
         <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-2">My Thoughts</h3>
         <div id="modal-review" class="font-['Space_Grotesk',sans-serif] text-[#5c0617] mt-3 leading-relaxed text-lg"></div>
@@ -339,16 +284,16 @@ const allRecipes = await getCollection('recipes');
 
   <div id="recipe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
     <div id="recipe-modal-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer opacity-0 transition-opacity duration-300"></div>
-    
+
     <div id="recipe-modal-content" class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2rem] shadow-[12px_12px_0px_2px_#5c0617] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 hide-scrollbar">
-      
-      <button id="recipe-close-modal" class="sfx-trigger absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
+
+      <button id="recipe-close-modal" class="absolute top-6 right-6 bg-[#e05263] text-white border-2 border-[#5c0617] w-12 h-12 rounded-full font-bold shadow-[4px_4px_0px_#5c0617] hover:rotate-90 hover:scale-110 hover:shadow-none transition-all duration-300 flex items-center justify-center text-xl">
         X
       </button>
 
       <div id="recipe-modal-dripper" class="bg-[#ecec53] text-[#5c0617] text-xs font-bold px-4 py-1.5 rounded-full w-fit mb-6 border-2 border-[#5c0617]"></div>
       <h2 id="recipe-modal-title" class="font-['DM_Serif_Display',serif] text-4xl md:text-5xl mb-8 text-[#5c0617] pr-12 leading-tight"></h2>
-      
+
       <div class="mb-8 pb-8 border-b-2 border-[#5c0617]/20">
         <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-4">Brew Parameters</h3>
         <ul class="space-y-2 font-['Space_Grotesk',sans-serif] text-lg text-[#5c0617]">
@@ -360,7 +305,7 @@ const allRecipes = await getCollection('recipes');
 
       <div class="mb-8 p-5 bg-[#ecec53] border-4 border-[#5c0617] rounded-2xl shadow-[6px_6px_0px_#5c0617]">
         <h4 class="font-['Space_Grotesk',sans-serif] font-black text-base text-[#5c0617] uppercase tracking-wider mb-3 flex items-center gap-2">
-          ⚙️ Interactive Recipe & Dose Calculator
+          Interactive Recipe & Dose Calculator
         </h4>
         <div class="flex flex-col gap-3 font-['Space_Grotesk',sans-serif] text-xs md:text-sm text-[#5c0617]">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -405,7 +350,7 @@ const allRecipes = await getCollection('recipes');
           </div>
         </div>
       </div>
-      
+
       <div>
         <h3 class="font-bold text-xl md:text-2xl text-[#5c0617] mb-2">Instructions</h3>
         <div id="recipe-modal-instructions" class="font-['Space_Grotesk',sans-serif] text-[#5c0617] mt-3 leading-relaxed text-lg bg-[#f8e5d6] p-6 rounded-2xl border-2 border-[#5c0617]"></div>
@@ -415,56 +360,8 @@ const allRecipes = await getCollection('recipes');
 
 </BaseLayout>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
 <script>
   import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
-
-  // WEB AUDIO API SYNTHESIZER
-  const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-  function playPopSound() {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.08);
-    
-    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
-    
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.08);
-  }
-
-  document.querySelectorAll('.sfx-trigger, .sticker-pop').forEach(el => {
-    el.addEventListener('click', playPopSound);
-  });
-
-  // EASTER EGG CONFETTI
-  let clickCount = 0;
-  function triggerConfetti(e: MouseEvent) {
-    clickCount++;
-    playPopSound();
-    if (clickCount >= 5) {
-      if ((window as any).confetti) {
-        (window as any).confetti({
-          particleCount: 120,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
-      }
-      clickCount = 0;
-    }
-  }
-
-  const pineappleMascot = document.getElementById('pineapple-mascot');
-  if (pineappleMascot) pineappleMascot.addEventListener('click', triggerConfetti);
-  document.querySelectorAll('.sticker-pop').forEach(stk => stk.addEventListener('click', triggerConfetti));
 
   // INTERACTIVE BREW RECIPE & PARAMETER CALCULATOR LOGIC
   const waterInput = document.getElementById('target-water-input') as HTMLInputElement;
@@ -477,7 +374,7 @@ const allRecipes = await getCollection('recipes');
 
   function updateRecipeCalculator() {
     if (!waterInput || !ratioSelect || !processSelect) return;
-    
+
     const water = parseFloat(waterInput.value) || 0;
     const ratio = parseFloat(ratioSelect.value) || 15.5;
     const process = processSelect.value;
@@ -510,29 +407,6 @@ const allRecipes = await getCollection('recipes');
     waterInput.addEventListener('input', updateRecipeCalculator);
     ratioSelect.addEventListener('change', updateRecipeCalculator);
     processSelect.addEventListener('change', updateRecipeCalculator);
-  }
-
-  // ANIMASI PRELOADER
-  const loaderOverlay = document.getElementById('loader-overlay');
-  const hiText = document.getElementById('hi-there-text');
-
-  if (loaderOverlay && pineappleMascot) {
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      pineappleMascot.classList.remove('scale-90');
-      pineappleMascot.classList.add('scale-110');
-    }, 400);
-
-    setTimeout(() => {
-      loaderOverlay.style.transform = 'translateY(-100%)';
-      document.body.style.overflow = '';
-      
-      if (hiText) {
-        hiText.classList.remove('scale-90', 'opacity-0');
-        hiText.classList.add('scale-100', 'opacity-100');
-      }
-    }, 1000);
   }
 
   // REUSABLE SWIPE FOCUS CAROUSEL LOGIC
@@ -610,25 +484,13 @@ const allRecipes = await getCollection('recipes');
   setupCarouselFocus('beans-carousel', '.bean-card', 'beans-prev', 'beans-next');
   setupCarouselFocus('recipes-carousel', '.recipe-card', 'recipes-prev', 'recipes-next');
 
-  // Animasi Font Hero
-  const textElement = document.getElementById('hi-there-text');
-  const fonts = [
-    "'Space Grotesk', sans-serif", "'DM Serif Display', serif", "'Syne', sans-serif",
-    "'Bebas Neue', sans-serif", "'Space Mono', monospace", "'Abril Fatface', serif", "'Permanent Marker', cursive"
-  ];
-  let currentIndex = 0;
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % fonts.length;
-    if (textElement) textElement.style.fontFamily = fonts[currentIndex];
-  }, 400);
-
   // Intersection Observer
   const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); 
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
@@ -659,7 +521,7 @@ const allRecipes = await getCollection('recipes');
     modal?.classList.remove('hidden');
     modal?.classList.add('flex');
     document.body.style.overflow = 'hidden';
-    
+
     setTimeout(() => {
       modalBackdrop?.classList.remove('opacity-0');
       modalBackdrop?.classList.add('opacity-100');
@@ -711,7 +573,7 @@ const allRecipes = await getCollection('recipes');
     recipeModal?.classList.remove('hidden');
     recipeModal?.classList.add('flex');
     document.body.style.overflow = 'hidden';
-    
+
     setTimeout(() => {
       recipeModalBackdrop?.classList.remove('opacity-0');
       recipeModalBackdrop?.classList.add('opacity-100');
@@ -740,23 +602,18 @@ const allRecipes = await getCollection('recipes');
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-  html { scroll-behavior: smooth; }
-  
+  /* MENAMBAHKAN CUSTOM CURSOR RETRO */
+  html, body {
+    cursor: url('/retro-cursor.png'), auto;
+    scroll-behavior: smooth;
+  }
+
+  a, button, .cursor-pointer, .bean-card, .recipe-card, .gear-item {
+    cursor: url('/retro-pointer.png'), pointer !important;
+  }
+
   .hide-scrollbar::-webkit-scrollbar { display: none; }
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-  /* CUSTOM PLAYFUL NANAS CURSOR */
-  .custom-cursor {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><text y='20' font-size='20'>🍍</text></svg>"), auto;
-  }
-
-  /* STICKER HOVER POP ANIMATION */
-  .sticker-pop {
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .sticker-pop:hover {
-    transform: scale(1.25) rotate(0deg) !important;
-  }
 
   /* Polkadot Background Pattern */
   .polkadot-bg {
@@ -764,12 +621,6 @@ const allRecipes = await getCollection('recipes');
     background-image: radial-gradient(rgba(92, 6, 23, 0.25) 15%, transparent 0.5%);
     background-size: 24px 24px;
     background-position: 0 0;
-  }
-
-  /* Animasi Bergerak pada Loader Checkerboard */
-  @keyframes loaderCheckerMove {
-    0% { background-position: 0 0, 0 25px, 25px -25px, -25px 0px; }
-    100% { background-position: 50px 50px, 50px 75px, 75px 25px, 25px 50px; }
   }
 
   /* Animasi Bergerak pada Footer Checkerboard */
@@ -788,11 +639,6 @@ const allRecipes = await getCollection('recipes');
   .anim-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  /* Animasi Hero Text Reveal */
-  #hi-there-text {
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* ANIMASI RUNNING TEXT SEAMLESS */
@@ -814,22 +660,6 @@ const allRecipes = await getCollection('recipes');
   @keyframes marqueeLoopReverse {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0%); }
-  }
-
-  /* Animasi Floating Melayang */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-  }
-  @keyframes floatDelayed {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-  }
-  .animate-float {
-    animation: float 4s ease-in-out infinite;
-  }
-  .animate-float-delayed {
-    animation: floatDelayed 4.5s ease-in-out infinite 1.5s;
   }
 
   /* Playful Button Active Scale */
