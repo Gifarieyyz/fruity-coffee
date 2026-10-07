@@ -12,15 +12,14 @@ const beansCollection = defineCollection({
   })
 });
 
-// Koleksi baru khusus buat Resep Seduhan
 const recipesCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/recipes" }),
   schema: z.object({
-    title: z.string(),          // Contoh: "Hario Switch Sweet & Juicy Recipe"
-    dripper: z.string(),        // Contoh: "Hario Switch"
-    ratio: z.string(),          // Contoh: "1:15 (15g : 225g)"
-    waterTemp: z.string(),      // Contoh: "90°C"
-    grindSize: z.string(),      // Contoh: "Medium-Fine (Click 14 Timemore S3)"
+    title: z.string(),
+    dripper: z.string(),
+    ratio: z.string(),
+    waterTemp: z.string(),
+    grindSize: z.string(),
   })
 });
 

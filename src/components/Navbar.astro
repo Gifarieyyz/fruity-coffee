@@ -1,18 +1,15 @@
 
-<nav id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 flex justify-between items-center rounded-full transition-colors duration-300 px-4 py-2 bg-transparent">
+<nav id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1400px] z-50 flex justify-between items-center rounded-full transition-all duration-300 px-4 py-2 bg-transparent border-2 border-transparent">
 
   <a href="/" class="flex items-center gap-4 hover:opacity-90 transition-opacity">
-    <img src="/pineapple.webp" alt="Logo Nanas" class="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-sm" />
+    <img src="/pineapple.webp" alt="Logo Fruity Coffee Club" class="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-sm" />
   </a>
 
 
   <div class="relative">
     <button id="nav-btn" class="text-white font-['Space_Grotesk',sans-serif] font-bold tracking-widest uppercase text-sm flex items-center gap-2 px-5 py-3 rounded-full hover:bg-black/10 transition-colors drop-shadow-md cursor-pointer">
       Menu <span id="nav-arrow" class="text-[0.6rem] transition-transform duration-200">▼</span>
-    </button>
-
-
-    <div id="dropdown-menu" class="absolute right-0 mt-4 w-48 bg-[#fff5ec] border-2 border-[#ecec53] rounded-xl shadow-[5px_5px_0px_#5c0617] opacity-0 invisible transition-all duration-200 transform origin-top-right overflow-hidden pointer-events-none">
+    </button>    <div id="dropdown-menu" class="absolute right-0 mt-4 w-48 bg-[#fff5ec] border-2 border-[#ecec53] rounded-xl shadow-[5px_5px_0px_#5c0617] opacity-0 invisible transition-all duration-200 transform origin-top-right overflow-hidden pointer-events-none">
       <ul class="flex flex-col text-xs font-bold tracking-widest uppercase">
         <li><a href="/" class="block px-6 py-4 text-[#5c0617] hover:bg-[#e05263] hover:text-[#fff5ec] border-b-2 border-[#ecec53] transition duration-200">HOME</a></li>
         <li><a href="#beans-section" class="block px-6 py-4 text-[#5c0617] hover:bg-[#e05263] hover:text-[#fff5ec] border-b-2 border-[#ecec53] transition duration-200">MY BEANS</a></li>
@@ -27,7 +24,7 @@
   const navBtn = document.getElementById('nav-btn');
   const dropdownMenu = document.getElementById('dropdown-menu');
 
-  // 1. Logika Klik Menu untuk Mobile & Desktop
+  // Toggle menu on click
   if (navBtn && dropdownMenu) {
     navBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -44,7 +41,7 @@
       }
     });
 
-    // Tutup dropdown kalau klik di luar area menu
+    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
       if (!navBtn.contains(e.target as Node) && !dropdownMenu.contains(e.target as Node)) {
         dropdownMenu.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
@@ -53,20 +50,20 @@
     });
   }
 
-  // 2. Logika Scroll Navbar Background
+  // Solid navbar background after scrolling past the hero
   window.addEventListener('scroll', () => {
     if (!navbarContainer || !navBtn) return;
     
     if (window.scrollY > 50) {
       navbarContainer.classList.remove('bg-transparent');
-      navbarContainer.classList.add('bg-[#FFEE8C]', 'backdrop-blur-sm');
+      navbarContainer.classList.add('bg-[#ecec53]', 'backdrop-blur-sm', 'border-2', 'border-[#5c0617]', 'shadow-[4px_4px_0px_#5c0617]');
       navBtn.classList.remove('text-white');
-      navBtn.classList.add('text-black');
+      navBtn.classList.add('text-[#5c0617]');
     } else {
-      navbarContainer.classList.remove('bg-[#FFEE8C]', 'backdrop-blur-sm');
+      navbarContainer.classList.remove('bg-[#ecec53]', 'backdrop-blur-sm', 'border-2', 'border-[#5c0617]', 'shadow-[4px_4px_0px_#5c0617]');
       navbarContainer.classList.add('bg-transparent');
       navBtn.classList.add('text-white');
-      navBtn.classList.remove('text-black');
+      navBtn.classList.remove('text-[#5c0617]');
     }
   });
 </script>

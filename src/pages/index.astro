@@ -241,7 +241,6 @@ const allRecipes = await getCollection('recipes');
 
   </section>
 
-  <!-- FOOTER DENGAN POLA CHECKERBOARD MERAH BERGERAK -->
   <footer
     id="footer-section"
     class="min-h-[5vh] border-t-4 border-[#ecec53] py-16 px-6 md:px-20 relative flex flex-col justify-between items-center overflow-hidden"
@@ -249,9 +248,7 @@ const allRecipes = await getCollection('recipes');
   >
     <div class="absolute inset-0 bg-black/10 z-0 pointer-events-none"></div>
 
-    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[#5c0617] font-bold">
-      <p class="bg-[#fff5ec]/90 px-4 py-2 border-2 border-[#5c0617] rounded-xl shadow-[4px_4px_0px_#5c0617] whitespace-nowrap">© 2026 Fruity Coffee Club</p>
-    </div>
+    <p class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 bg-[#fff5ec]/90 px-4 py-2 border-2 border-[#5c0617] rounded-xl shadow-[4px_4px_0px_#5c0617] whitespace-nowrap text-[#5c0617] font-bold">© 2026 Fruity Coffee Club</p>
   </footer>
 
   <div id="bean-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
@@ -360,13 +357,12 @@ const allRecipes = await getCollection('recipes');
 
 </BaseLayout>
 
-<script>
-  import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
-
-  // INTERACTIVE BREW RECIPE & PARAMETER CALCULATOR LOGIC
-  const waterInput = document.getElementById('target-water-input') as HTMLInputElement;
-  const ratioSelect = document.getElementById('brew-ratio-select') as HTMLSelectElement;
-  const processSelect = document.getElementById('bean-process-select') as HTMLSelectElement;
+<script is:inline src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script is:inline>
+  // Interactive brew dose calculator
+  const waterInput = document.getElementById('target-water-input');
+  const ratioSelect = document.getElementById('brew-ratio-select');
+  const processSelect = document.getElementById('bean-process-select');
 
   const doseRes = document.getElementById('coffee-dose-res');
   const tempRes = document.getElementById('ideal-temp-res');
@@ -409,10 +405,10 @@ const allRecipes = await getCollection('recipes');
     processSelect.addEventListener('change', updateRecipeCalculator);
   }
 
-  // REUSABLE SWIPE FOCUS CAROUSEL LOGIC
-  function setupCarouselFocus(carouselId: string, cardClass: string, prevBtnId?: string, nextBtnId?: string) {
+  // Swipeable focus carousel (shared by beans & recipes)
+  function setupCarouselFocus(carouselId, cardClass, prevBtnId, nextBtnId) {
     const carousel = document.getElementById(carouselId);
-    const cards = carousel?.querySelectorAll(cardClass);
+    const cards = carousel ? carousel.querySelectorAll(cardClass) : null;
     const prevBtn = prevBtnId ? document.getElementById(prevBtnId) : null;
     const nextBtn = nextBtnId ? document.getElementById(nextBtnId) : null;
 
@@ -423,7 +419,7 @@ const allRecipes = await getCollection('recipes');
       const carouselCenter = carouselRect.left + carouselRect.width / 2;
 
       cards.forEach((card) => {
-        const el = card as HTMLElement;
+        const el = card;
         const cardRect = el.getBoundingClientRect();
         const cardCenter = cardRect.left + cardRect.width / 2;
         const distanceFromCenter = Math.abs(carouselCenter - cardCenter);
@@ -459,8 +455,8 @@ const allRecipes = await getCollection('recipes');
     }
 
     let isDown = false;
-    let startX: number;
-    let scrollLeft: number;
+    let startX;
+    let scrollLeft;
 
     carousel.addEventListener('mousedown', (e) => {
       isDown = true;
@@ -510,39 +506,49 @@ const allRecipes = await getCollection('recipes');
   const mNotes = document.getElementById('modal-notes');
   const mReview = document.getElementById('modal-review');
 
-  function openModal(data: any) {
+  function openModal(data) {
     if(mName) mName.innerText = data.name;
     if(mOrigin) mOrigin.innerText = data.origin;
     if(mProcess) mProcess.innerText = data.process;
     if(mRoaster) mRoaster.innerText = data.roaster;
     if(mNotes) mNotes.innerText = data.notes;
-    if(mReview) mReview.innerHTML = marked.parse(data.review);
+    if(mReview) mReview.innerHTML = window.marked.parse(data.review);
 
-    modal?.classList.remove('hidden');
-    modal?.classList.add('flex');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
 
     setTimeout(() => {
-      modalBackdrop?.classList.remove('opacity-0');
-      modalBackdrop?.classList.add('opacity-100');
-      modalContent?.classList.remove('scale-95', 'opacity-0');
-      modalContent?.classList.add('scale-100', 'opacity-100');
+      if (modalBackdrop) {
+        modalBackdrop.classList.remove('opacity-0');
+        modalBackdrop.classList.add('opacity-100');
+      }
+      if (modalContent) {
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+      }
     }, 10);
   }
 
   function close() {
-    modalBackdrop?.classList.remove('opacity-100');
-    modalBackdrop?.classList.add('opacity-0');
-    modalContent?.classList.remove('scale-100', 'opacity-100');
-    modalContent?.classList.add('scale-95', 'opacity-0');
+    if (modalBackdrop) {
+      modalBackdrop.classList.remove('opacity-100');
+      modalBackdrop.classList.add('opacity-0');
+    }
+    if (modalContent) {
+      modalContent.classList.remove('scale-100', 'opacity-100');
+      modalContent.classList.add('scale-95', 'opacity-0');
+    }
     setTimeout(() => {
-      modal?.classList.add('hidden');
-      modal?.classList.remove('flex');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
       document.body.style.overflow = '';
     }, 300);
   }
 
-  beanCardsList.forEach(card => card.addEventListener('click', () => openModal((card as HTMLElement).dataset)));
+  beanCardsList.forEach(card => card.addEventListener('click', () => openModal(card.dataset)));
   if(closeModal) closeModal.addEventListener('click', close);
   if(modalBackdrop) modalBackdrop.addEventListener('click', close);
 
@@ -560,49 +566,56 @@ const allRecipes = await getCollection('recipes');
   const rGrindSize = document.getElementById('recipe-modal-grindsize');
   const rInstructions = document.getElementById('recipe-modal-instructions');
 
-  function openRecipeModal(data: any) {
+  function openRecipeModal(data) {
     if(rTitle) rTitle.innerText = data.title;
     if(rDripper) rDripper.innerText = data.dripper;
     if(rRatio) rRatio.innerText = data.ratio;
     if(rWaterTemp) rWaterTemp.innerText = data.watertemp;
     if(rGrindSize) rGrindSize.innerText = data.grindsize;
-    if(rInstructions) rInstructions.innerHTML = marked.parse(data.instructions);
+    if(rInstructions) rInstructions.innerHTML = window.marked.parse(data.instructions);
 
     updateRecipeCalculator();
 
-    recipeModal?.classList.remove('hidden');
-    recipeModal?.classList.add('flex');
+    recipeModal.classList.remove('hidden');
+    recipeModal.classList.add('flex');
     document.body.style.overflow = 'hidden';
 
     setTimeout(() => {
-      recipeModalBackdrop?.classList.remove('opacity-0');
-      recipeModalBackdrop?.classList.add('opacity-100');
-      recipeModalContent?.classList.remove('scale-95', 'opacity-0');
-      recipeModalContent?.classList.add('scale-100', 'opacity-100');
+      if (recipeModalBackdrop) {
+        recipeModalBackdrop.classList.remove('opacity-0');
+        recipeModalBackdrop.classList.add('opacity-100');
+      }
+      if (recipeModalContent) {
+        recipeModalContent.classList.remove('scale-95', 'opacity-0');
+        recipeModalContent.classList.add('scale-100', 'opacity-100');
+      }
     }, 10);
   }
 
   function closeRecipe() {
-    recipeModalBackdrop?.classList.remove('opacity-100');
-    recipeModalBackdrop?.classList.add('opacity-0');
-    recipeModalContent?.classList.remove('scale-100', 'opacity-100');
-    recipeModalContent?.classList.add('scale-95', 'opacity-0');
+    if (recipeModalBackdrop) {
+      recipeModalBackdrop.classList.remove('opacity-100');
+      recipeModalBackdrop.classList.add('opacity-0');
+    }
+    if (recipeModalContent) {
+      recipeModalContent.classList.remove('scale-100', 'opacity-100');
+      recipeModalContent.classList.add('scale-95', 'opacity-0');
+    }
     setTimeout(() => {
-      recipeModal?.classList.add('hidden');
-      recipeModal?.classList.remove('flex');
+      if (recipeModal) {
+        recipeModal.classList.add('hidden');
+        recipeModal.classList.remove('flex');
+      }
       document.body.style.overflow = '';
     }, 300);
   }
 
-  recipeCards.forEach(card => card.addEventListener('click', () => openRecipeModal((card as HTMLElement).dataset)));
+  recipeCards.forEach(card => card.addEventListener('click', () => openRecipeModal(card.dataset)));
   if(recipeCloseModal) recipeCloseModal.addEventListener('click', closeRecipe);
   if(recipeModalBackdrop) recipeModalBackdrop.addEventListener('click', closeRecipe);
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-
-  /* MENAMBAHKAN CUSTOM CURSOR RETRO */
   html, body {
     cursor: url('/retro-cursor.png'), auto;
     scroll-behavior: smooth;
@@ -623,13 +636,13 @@ const allRecipes = await getCollection('recipes');
     background-position: 0 0;
   }
 
-  /* Animasi Bergerak pada Footer Checkerboard */
+  /* Footer checkerboard drift */
   @keyframes footerCheckerMove {
     0% { background-position: 0 0, 0 20px, 20px -20px, -20px 0px; }
     100% { background-position: 40px 40px, 40px 60px, 60px 20px, 20px 40px; }
   }
 
-  /* Animasi Fade-in Scroll Smooth & Bouncy */
+  /* Scroll-in animation */
   .anim-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -641,7 +654,7 @@ const allRecipes = await getCollection('recipes');
     transform: translateY(0);
   }
 
-  /* ANIMASI RUNNING TEXT SEAMLESS */
+  /* Seamless marquee */
   .marquee-track {
     display: flex;
     width: max-content;
@@ -662,12 +675,11 @@ const allRecipes = await getCollection('recipes');
     100% { transform: translateX(0%); }
   }
 
-  /* Playful Button Active Scale */
   .btn-playful:active {
     transform: scale(0.9) translateY(2px);
   }
 
-  /* Styling Markdown Render */
+  /* Markdown render inside modals */
   #recipe-modal-instructions p, #modal-review p { margin-bottom: 1rem; }
   #recipe-modal-instructions h3 {
     font-family: 'DM Serif Display', serif;
