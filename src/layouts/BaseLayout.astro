@@ -1,10 +1,21 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title = "Fruity Coffee Club" } = Astro.props;
+const {
+  title = "Fruity Coffee Club",
+  description = "Catatan beans light roast dan resep manual brew yang diseduh tiap hari: V60, Hario Switch, dan tasting notes yang beneran fruity.",
+  image = "/bg1.webp",
+} = Astro.props;
 import '../styles/global.css';
+
+const siteUrl = Astro.site ?? new URL('https://fruity-coffee.vercel.app');
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const ogImage = new URL(image, siteUrl);
+const fullTitle = title === "Fruity Coffee Club" ? title : `${title} | Fruity Coffee Club`;
 ---
 
 <!DOCTYPE html>
@@ -13,14 +24,44 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" />
-    <meta name="description" content="Fruity Coffee Club — catatan beans dan resep manual brew." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/pineapple.webp" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#fff5ec" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fruity Coffee Club" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="id_ID" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Fruity Coffee Club",
+      "url": siteUrl.href,
+      "description": description,
+      "inLanguage": "id-ID"
+    })} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fredoka+One&family=Space+Grotesk:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
   </head>
   <body class="bg-[#fff5ec] text-[#5c0617] font-sans">
     <slot />

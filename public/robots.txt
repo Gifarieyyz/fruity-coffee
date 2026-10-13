@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /fruity-space/
+Disallow: /keystatic/
+
+Sitemap: https://fruity-coffee.vercel.app/sitemap-index.xml
