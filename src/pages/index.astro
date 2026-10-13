@@ -10,60 +10,43 @@ const allRecipes = await getCollection('recipes');
 <BaseLayout title="Fruity Coffee Club">
   <Navbar />
 
-  <main class="min-h-screen w-full hero-checker-bg relative flex items-center overflow-hidden border-b-0 py-24 px-6 md:px-20">
-    <div class="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+  <main class="min-h-screen w-full hero-checker-bg relative flex items-center overflow-hidden border-b-0 py-16 md:py-24 px-5 md:px-20">
+    <div class="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">
 
-      <div class="flex flex-col items-start gap-8">
-        <div class="inline-block bg-[#ecec53] border-4 border-[#5c0617] rounded-full px-6 py-2 shadow-[6px_6px_0px_#5c0617] rotate-2">
-          <span class="font-['Space_Grotesk',sans-serif] font-bold text-sm md:text-base text-[#5c0617] tracking-widest uppercase">Fruity Coffee Club</span>
+      <div class="flex flex-col items-start gap-5 md:gap-8">
+        <div class="inline-block bg-[#ecec53] border-4 border-[#5c0617] rounded-full px-4 py-1.5 md:px-6 md:py-2 shadow-[4px_4px_0px_#5c0617] md:shadow-[6px_6px_0px_#5c0617] rotate-2">
+          <span class="font-['Space_Grotesk',sans-serif] font-bold text-xs md:text-base text-[#5c0617] tracking-widest uppercase">Fruity Coffee Club</span>
         </div>
 
-        <h1 class="font-['Fredoka_One',sans-serif] font-normal text-[#5c0617] text-5xl md:text-7xl xl:text-8xl leading-[1.05] m-0">
-          <span class="inline-block bg-[#e05263] text-white border-4 border-[#5c0617] rounded-3xl px-5 py-2 md:px-7 shadow-[8px_8px_0px_2px_#5c0617] -rotate-2 mb-3">hi there.</span><br />
-          <span class="inline-block bg-[#fff5ec] border-4 border-[#5c0617] rounded-3xl px-5 py-2 md:px-7 shadow-[8px_8px_0px_2px_#5c0617] rotate-1">brew slow,<br />taste the fruit.</span>
+        <h1 class="font-['Fredoka_One',sans-serif] font-normal text-[#5c0617] text-4xl md:text-7xl xl:text-8xl leading-[1.05] m-0">
+          <span class="inline-block bg-[#e05263] text-white border-4 border-[#5c0617] rounded-2xl md:rounded-3xl px-4 py-1.5 md:px-7 md:py-2 shadow-[5px_5px_0px_2px_#5c0617] md:shadow-[8px_8px_0px_2px_#5c0617] -rotate-2 mb-2 md:mb-3">hi there.</span><br />
+          <span class="inline-block bg-[#fff5ec] border-4 border-[#5c0617] rounded-2xl md:rounded-3xl px-4 py-1.5 md:px-7 md:py-2 shadow-[5px_5px_0px_2px_#5c0617] md:shadow-[8px_8px_0px_2px_#5c0617] rotate-1">brew slow, taste the fruit.</span>
         </h1>
 
-        <a href="#beans-section" class="btn-playful inline-flex items-center gap-3 bg-[#ecec53] text-[#5c0617] border-4 border-[#5c0617] rounded-full px-8 py-4 font-['Space_Grotesk',sans-serif] font-bold text-base md:text-lg shadow-[6px_6px_0px_#5c0617] hover:translate-y-1 hover:shadow-none transition-all select-none">
+        <a href="#beans-section" class="btn-playful inline-flex items-center gap-3 bg-[#ecec53] text-[#5c0617] border-4 border-[#5c0617] rounded-full px-6 py-3 md:px-8 md:py-4 font-['Space_Grotesk',sans-serif] font-bold text-sm md:text-lg shadow-[4px_4px_0px_#5c0617] md:shadow-[6px_6px_0px_#5c0617] hover:translate-y-1 hover:shadow-none transition-all select-none">
           Lihat Recent Brews
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
           </svg>
         </a>
       </div>
 
       <div class="relative flex justify-center lg:justify-end select-none" aria-hidden="true">
-        <div class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-8 md:p-10 shadow-[12px_12px_0px_2px_#5c0617] -rotate-2 hover:rotate-0 transition-transform duration-300">
-          <svg viewBox="0 0 320 360" class="w-[260px] md:w-[340px] h-auto" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi dripper menuang kopi ke server">
-            <line x1="60" y1="330" x2="260" y2="330" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
-            <line x1="76" y1="120" x2="76" y2="330" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
-            <line x1="244" y1="120" x2="244" y2="330" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
-            <line x1="60" y1="126" x2="260" y2="126" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
+        <div class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2rem] p-5 md:p-10 shadow-[8px_8px_0px_2px_#5c0617] md:shadow-[12px_12px_0px_2px_#5c0617] -rotate-2">
+          <svg viewBox="0 0 240 260" class="w-[170px] md:w-[300px] h-auto" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi dripper menuang kopi ke gelas">
+            <path d="M60 40 L180 40 L162 104 L78 104 Z" fill="#fff5ec" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
+            <path d="M74 56 L166 56" stroke="#e05263" stroke-width="8" stroke-linecap="round" />
+            <path d="M108 104 L132 104 L126 122 L114 122 Z" fill="#ecec53" stroke="#5c0617" stroke-width="7" stroke-linejoin="round" />
 
-            <path d="M104 60 L216 60 L196 132 L124 132 Z" fill="#fff5ec" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
-            <path d="M118 76 L202 76" stroke="#e05263" stroke-width="8" stroke-linecap="round" />
-            <path d="M150 132 L170 132 L164 152 L156 152 Z" fill="#ecec53" stroke="#5c0617" stroke-width="7" stroke-linejoin="round" />
+            <line class="pour-stream" x1="120" y1="128" x2="120" y2="178" stroke="#5c0617" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 12" />
 
-            <line class="pour-stream" x1="160" y1="158" x2="160" y2="238" stroke="#5c0617" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 12" />
+            <path d="M74 184 L166 184 L156 242 L84 242 Z" fill="#ecec53" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
 
-            <path d="M112 244 L208 244 L222 318 L98 318 Z" fill="#fff5ec" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
-            <path class="coffee-fill" d="M112 244 L208 244 L222 318 L98 318 Z" fill="#ecec53" stroke="none" />
-            <path d="M112 244 L208 244 L222 318 L98 318 Z" fill="none" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
-
-            <g class="steam steam-1">
-              <path d="M130 40 q6 -10 0 -20" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
-            </g>
             <g class="steam steam-2">
-              <path d="M160 44 q-6 -12 0 -24" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
+              <path d="M120 28 q-6 -10 0 -20" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
             </g>
-            <g class="steam steam-3">
-              <path d="M190 40 q6 -10 0 -20" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
-            </g>
-
-            <circle cx="52" cy="70" r="10" fill="#ecec53" stroke="#5c0617" stroke-width="6" />
-            <circle cx="272" cy="96" r="7" fill="#e05263" stroke="#5c0617" stroke-width="5" />
-            <path d="M278 190 l0 18 M269 199 l18 0" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
           </svg>
-          <span class="absolute -top-5 -right-4 bg-[#ecec53] text-[#5c0617] font-['Space_Grotesk',sans-serif] font-bold text-xs md:text-sm uppercase tracking-widest px-4 py-2 border-4 border-[#5c0617] rounded-full shadow-[4px_4px_0px_#5c0617] rotate-6">now brewing</span>
+          <span class="absolute -top-4 -right-3 bg-[#ecec53] text-[#5c0617] font-['Space_Grotesk',sans-serif] font-bold text-[10px] md:text-sm uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 border-4 border-[#5c0617] rounded-full shadow-[4px_4px_0px_#5c0617] rotate-6">now brewing</span>
         </div>
       </div>
 
