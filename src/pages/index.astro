@@ -10,7 +10,7 @@ const allRecipes = await getCollection('recipes');
 <BaseLayout title="Fruity Coffee Club">
   <Navbar />
 
-  <main class="min-h-screen w-full polkadot-bg relative flex items-center overflow-hidden border-b-0 py-24 px-6 md:px-20">
+  <main class="min-h-screen w-full hero-checker-bg relative flex items-center overflow-hidden border-b-0 py-24 px-6 md:px-20">
     <div class="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
       <div class="flex flex-col items-start gap-8">
@@ -23,10 +23,6 @@ const allRecipes = await getCollection('recipes');
           <span class="inline-block bg-[#fff5ec] border-4 border-[#5c0617] rounded-3xl px-5 py-2 md:px-7 shadow-[8px_8px_0px_2px_#5c0617] rotate-1">brew slow,<br />taste the fruit.</span>
         </h1>
 
-        <p class="font-['Space_Grotesk',sans-serif] text-lg md:text-xl text-[#5c0617] max-w-md leading-relaxed">
-          Catatan beans light roast dan resep manual brew yang saya seduh tiap hari: V60, Switch, dan segala yang bikin kopi terasa seperti buah.
-        </p>
-
         <a href="#beans-section" class="btn-playful inline-flex items-center gap-3 bg-[#ecec53] text-[#5c0617] border-4 border-[#5c0617] rounded-full px-8 py-4 font-['Space_Grotesk',sans-serif] font-bold text-base md:text-lg shadow-[6px_6px_0px_#5c0617] hover:translate-y-1 hover:shadow-none transition-all select-none">
           Lihat Recent Brews
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
@@ -35,11 +31,39 @@ const allRecipes = await getCollection('recipes');
         </a>
       </div>
 
-      <div class="relative flex justify-center lg:justify-end">
-        <div class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2rem] p-4 pb-16 shadow-[12px_12px_0px_2px_#5c0617] rotate-3 hover:rotate-1 transition-transform duration-300 w-[290px] md:w-[400px]">
-          <img src="/bg1.webp" alt="Seduhan manual brew di Fruity Coffee Club" class="w-full h-[320px] md:h-[440px] object-cover rounded-2xl border-4 border-[#5c0617] select-none" />
-          <p class="absolute bottom-5 left-1/2 -translate-x-1/2 font-['DM_Serif_Display',serif] text-xl md:text-2xl text-[#5c0617] whitespace-nowrap">today's pour</p>
-          <span class="absolute -top-5 -left-5 bg-[#ecec53] text-[#5c0617] font-['Space_Grotesk',sans-serif] font-bold text-xs md:text-sm uppercase tracking-widest px-4 py-2 border-4 border-[#5c0617] rounded-full shadow-[4px_4px_0px_#5c0617] -rotate-12">fresh cup</span>
+      <div class="relative flex justify-center lg:justify-end select-none" aria-hidden="true">
+        <div class="relative bg-[#fff5ec] border-[6px] border-[#5c0617] rounded-[2.5rem] p-8 md:p-10 shadow-[12px_12px_0px_2px_#5c0617] -rotate-2 hover:rotate-0 transition-transform duration-300">
+          <svg viewBox="0 0 320 360" class="w-[260px] md:w-[340px] h-auto" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi dripper menuang kopi ke server">
+            <line x1="60" y1="330" x2="260" y2="330" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
+            <line x1="76" y1="120" x2="76" y2="330" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
+            <line x1="244" y1="120" x2="244" y2="330" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
+            <line x1="60" y1="126" x2="260" y2="126" stroke="#5c0617" stroke-width="10" stroke-linecap="round" />
+
+            <path d="M104 60 L216 60 L196 132 L124 132 Z" fill="#fff5ec" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
+            <path d="M118 76 L202 76" stroke="#e05263" stroke-width="8" stroke-linecap="round" />
+            <path d="M150 132 L170 132 L164 152 L156 152 Z" fill="#ecec53" stroke="#5c0617" stroke-width="7" stroke-linejoin="round" />
+
+            <line class="pour-stream" x1="160" y1="158" x2="160" y2="238" stroke="#5c0617" stroke-width="7" stroke-linecap="round" stroke-dasharray="10 12" />
+
+            <path d="M112 244 L208 244 L222 318 L98 318 Z" fill="#fff5ec" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
+            <path class="coffee-fill" d="M112 244 L208 244 L222 318 L98 318 Z" fill="#ecec53" stroke="none" />
+            <path d="M112 244 L208 244 L222 318 L98 318 Z" fill="none" stroke="#5c0617" stroke-width="8" stroke-linejoin="round" />
+
+            <g class="steam steam-1">
+              <path d="M130 40 q6 -10 0 -20" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
+            </g>
+            <g class="steam steam-2">
+              <path d="M160 44 q-6 -12 0 -24" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
+            </g>
+            <g class="steam steam-3">
+              <path d="M190 40 q6 -10 0 -20" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
+            </g>
+
+            <circle cx="52" cy="70" r="10" fill="#ecec53" stroke="#5c0617" stroke-width="6" />
+            <circle cx="272" cy="96" r="7" fill="#e05263" stroke="#5c0617" stroke-width="5" />
+            <path d="M278 190 l0 18 M269 199 l18 0" stroke="#5c0617" stroke-width="6" stroke-linecap="round" />
+          </svg>
+          <span class="absolute -top-5 -right-4 bg-[#ecec53] text-[#5c0617] font-['Space_Grotesk',sans-serif] font-bold text-xs md:text-sm uppercase tracking-widest px-4 py-2 border-4 border-[#5c0617] rounded-full shadow-[4px_4px_0px_#5c0617] rotate-6">now brewing</span>
         </div>
       </div>
 
@@ -648,6 +672,36 @@ const allRecipes = await getCollection('recipes');
     background-image: radial-gradient(rgba(92, 6, 23, 0.25) 15%, transparent 0.5%);
     background-size: 24px 24px;
     background-position: 0 0;
+  }
+
+  /* Hero checkerboard (footer pattern, light tone) */
+  .hero-checker-bg {
+    background-color: #fff5ec;
+    background-image: linear-gradient(45deg, rgba(224, 82, 99, 0.08) 25%, transparent 25%), linear-gradient(-45deg, rgba(224, 82, 99, 0.08) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(224, 82, 99, 0.08) 75%), linear-gradient(-45deg, transparent 75%, rgba(224, 82, 99, 0.08) 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+    animation: footerCheckerMove 6s linear infinite;
+  }
+
+  /* Dripper illustration animation */
+  .pour-stream {
+    animation: pourFlow 1.1s linear infinite;
+  }
+  @keyframes pourFlow {
+    0% { stroke-dashoffset: 22; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .steam-1 { animation: steamRise 2.4s ease-in-out infinite; }
+  .steam-2 { animation: steamRise 2.4s ease-in-out 0.5s infinite; }
+  .steam-3 { animation: steamRise 2.4s ease-in-out 1s infinite; }
+  @keyframes steamRise {
+    0%, 100% { opacity: 0.25; transform: translateY(2px); }
+    50% { opacity: 1; transform: translateY(-4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pour-stream, .steam-1, .steam-2, .steam-3, .hero-checker-bg { animation: none; }
   }
 
   /* Footer checkerboard drift */
