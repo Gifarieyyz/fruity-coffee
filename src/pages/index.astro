@@ -10,7 +10,7 @@ const allRecipes = await getCollection('recipes');
 <BaseLayout title="Fruity Coffee Club">
   <Navbar />
 
-  <main class="min-h-screen w-full bg-[#fff5ec] relative flex items-center justify-center overflow-hidden border-b-0 py-16 md:py-24 px-5 md:px-20">
+  <main class="min-h-screen w-full hero-checker-bg relative flex items-center justify-center overflow-hidden border-b-0 py-16 md:py-24 px-5 md:px-20">
     <div class="max-w-[900px] mx-auto w-full flex flex-col items-center text-center gap-5 md:gap-8">
 
       <div class="inline-block bg-[#ecec53] border-4 border-[#5c0617] rounded-full px-4 py-1.5 md:px-6 md:py-2 shadow-[4px_4px_0px_#5c0617] md:shadow-[6px_6px_0px_#5c0617] rotate-2">
@@ -34,16 +34,16 @@ const allRecipes = await getCollection('recipes');
 
   <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#ecec53] py-3 flex items-center select-none w-full">
     <div class="marquee-track flex whitespace-nowrap">
-      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
-        <span>FRUITY COFFEE CLUB</span>
-        <span>MANUAL BREW DAILY</span>
-        <span>LIGHT ROAST ONLY</span>
-      </div>
-      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
-        <span>FRUITY COFFEE CLUB</span>
-        <span>MANUAL BREW DAILY</span>
-        <span>LIGHT ROAST ONLY</span>
-      </div>
+      {[0, 1].map((dup) => (
+        <div class="marquee-group flex items-center gap-8 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase" aria-hidden={dup === 1 ? 'true' : undefined}>
+          {Array.from({ length: 8 }).map(() => (
+            <>
+              <span>Fruity Coffee Club</span>
+              <span class="text-[#e05263]">✦</span>
+            </>
+          ))}
+        </div>
+      ))}
     </div>
   </div>
 
@@ -102,16 +102,16 @@ const allRecipes = await getCollection('recipes');
 
   <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#fff5ec] py-3 flex items-center select-none w-full">
     <div class="marquee-track-reverse flex whitespace-nowrap">
-      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
-        <span>POUR OVER ENTHUSIAST</span>
-        <span>HARIO SWITCH</span>
-        <span>TIMEMORE S3</span>
-      </div>
-      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
-        <span>POUR OVER ENTHUSIAST</span>
-        <span>HARIO SWITCH</span>
-        <span>TIMEMORE S3</span>
-      </div>
+      {[0, 1].map((dup) => (
+        <div class="marquee-group flex items-center gap-8 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase" aria-hidden={dup === 1 ? 'true' : undefined}>
+          {Array.from({ length: 8 }).map(() => (
+            <>
+              <span>Fruity Coffee Club</span>
+              <span class="text-[#e05263]">✦</span>
+            </>
+          ))}
+        </div>
+      ))}
     </div>
   </div>
 
@@ -172,16 +172,16 @@ const allRecipes = await getCollection('recipes');
 
   <div class="overflow-hidden border-t-4 border-[#5c0617] bg-[#ecec53] py-3 flex items-center select-none w-full">
     <div class="marquee-track flex whitespace-nowrap">
-      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12">
-        <span>POUR OVER ENTHUSIAST</span>
-        <span>HARIO SWITCH</span>
-        <span>TIMEMORE S3</span>
-      </div>
-      <div class="marquee-group flex gap-12 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase pr-12" aria-hidden="true">
-        <span>POUR OVER ENTHUSIAST</span>
-        <span>HARIO SWITCH</span>
-        <span>TIMEMORE S3</span>
-      </div>
+      {[0, 1].map((dup) => (
+        <div class="marquee-group flex items-center gap-8 font-['Space_Grotesk',sans-serif] font-bold text-xl md:text-2xl text-[#5c0617] tracking-widest uppercase" aria-hidden={dup === 1 ? 'true' : undefined}>
+          {Array.from({ length: 8 }).map(() => (
+            <>
+              <span>Fruity Coffee Club</span>
+              <span class="text-[#e05263]">✦</span>
+            </>
+          ))}
+        </div>
+      ))}
     </div>
   </div>
 
@@ -636,7 +636,18 @@ const allRecipes = await getCollection('recipes');
     background-position: 0 0;
   }
 
-  /* Hero: clean cream, no pattern */
+  /* Hero checkerboard (footer pattern, light tone) */
+  .hero-checker-bg {
+    background-color: #fff5ec;
+    background-image: linear-gradient(45deg, rgba(224, 82, 99, 0.08) 25%, transparent 25%), linear-gradient(-45deg, rgba(224, 82, 99, 0.08) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(224, 82, 99, 0.08) 75%), linear-gradient(-45deg, transparent 75%, rgba(224, 82, 99, 0.08) 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+    animation: footerCheckerMove 6s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-checker-bg { animation: none; }
+  }
 
   /* Footer checkerboard drift */
   @keyframes footerCheckerMove {
@@ -660,21 +671,33 @@ const allRecipes = await getCollection('recipes');
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marqueeLoop 22s linear infinite;
+    animation: marqueeLoop 30s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
   }
   .marquee-track-reverse {
     display: flex;
     width: max-content;
-    animation: marqueeLoopReverse 22s linear infinite;
+    animation: marqueeLoopReverse 30s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .marquee-group {
+    flex-shrink: 0;
+    padding-right: 2rem;
   }
 
   @keyframes marqueeLoop {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
   }
   @keyframes marqueeLoopReverse {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
+    0% { transform: translate3d(-50%, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track, .marquee-track-reverse { animation: none; }
   }
 
   .btn-playful:active {
