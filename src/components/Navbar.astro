@@ -7,7 +7,7 @@
 
 
   <div class="relative">
-    <button id="nav-btn" class="text-[#5c0617] font-['Space_Grotesk',sans-serif] font-bold tracking-widest uppercase text-sm flex items-center gap-2 px-5 py-3 rounded-full hover:bg-[#5c0617]/10 transition-colors cursor-pointer">
+    <button id="nav-btn" class="text-white font-['Space_Grotesk',sans-serif] font-bold tracking-widest uppercase text-sm flex items-center gap-2 px-5 py-3 rounded-full hover:bg-black/10 transition-colors drop-shadow-md cursor-pointer">
       Menu <span id="nav-arrow" class="text-[0.6rem] transition-transform duration-200">▼</span>
     </button>    <div id="dropdown-menu" class="absolute right-0 mt-4 w-48 bg-[#fff5ec] border-2 border-[#ecec53] rounded-xl shadow-[5px_5px_0px_#5c0617] opacity-0 invisible transition-all duration-200 transform origin-top-right overflow-hidden pointer-events-none">
       <ul class="flex flex-col text-xs font-bold tracking-widest uppercase">
@@ -57,9 +57,13 @@
     if (window.scrollY > 50) {
       navbarContainer.classList.remove('bg-transparent');
       navbarContainer.classList.add('bg-[#ecec53]', 'backdrop-blur-sm', 'border-2', 'border-[#5c0617]', 'shadow-[4px_4px_0px_#5c0617]');
+      navBtn.classList.remove('text-white');
+      navBtn.classList.add('text-[#5c0617]');
     } else {
       navbarContainer.classList.remove('bg-[#ecec53]', 'backdrop-blur-sm', 'border-2', 'border-[#5c0617]', 'shadow-[4px_4px_0px_#5c0617]');
       navbarContainer.classList.add('bg-transparent');
+      navBtn.classList.add('text-white');
+      navBtn.classList.remove('text-[#5c0617]');
     }
   });
 </script>
